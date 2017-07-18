@@ -17,7 +17,7 @@ export default class App extends Component {
   render () {
     return (
       <Root>
-        <Title>Typeshop</Title>
+        <Title>Typeshop Test</Title>
       </Root>
     )
   }
