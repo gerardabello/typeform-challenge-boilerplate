@@ -20,7 +20,6 @@
     "build": "npm run clean && NODE_ENV=production webpack && cp ./index.html ./dist",
     "lint": "standard --verbose"
   },
-  "license": "UNLICENSED",
   "standard": {
     "global": [
       "it",
