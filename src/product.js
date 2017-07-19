@@ -19,6 +19,9 @@ const Picture = styled.div`
     border-radius: 5px;
     box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.28);
     width: 70vw;
+    height: 70vw;
+    object-fit: cover;
+    object-position: center;
   }
 `
 
