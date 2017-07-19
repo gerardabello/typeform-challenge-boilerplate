@@ -32,7 +32,7 @@ function getPriceForProduct (form, blockID, choiceID) {
   let logic = form.logic.find(b => b.ref === block.ref)
 
   if (!logic) {
-    return 'no logic'
+    return 0
   }
 
   let action = logic.actions
