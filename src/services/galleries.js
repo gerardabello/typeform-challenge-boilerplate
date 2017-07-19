@@ -1,4 +1,4 @@
-export function getProducts (form) {
+export function getGalleries (form) {
   const blocks = form.fields.filter(block => block.properties.choices != null)
   return blocks.map(block => {
     return {
