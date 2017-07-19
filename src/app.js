@@ -46,7 +46,6 @@ class App extends Component {
         welcomeScreen,
         fetching: false
       })
-      console.log(getGalleries(form))
     } catch (reason) {
       console.warn(reason)
     }

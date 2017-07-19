@@ -14,7 +14,7 @@ const GalleryWrapper = styled.div`
 
   transform: translateY(
     calc(
-      ${props => -100 * props.index}vh
+      ${props => -100 * props.index}vh - ${props => props.delta}px
     )
   );
   transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
@@ -67,13 +67,13 @@ class Layout extends Component {
 
   swipingUp (_, delta) {
     this.setState({
-      verticalDelta: -delta
+      verticalDelta: delta
     })
   }
 
   swipingDown (_, delta) {
     this.setState({
-      verticalDelta: delta
+      verticalDelta: -delta
     })
   }
 
@@ -120,6 +120,7 @@ class Layout extends Component {
     const index = R.max(nextIndex, MIN_ITEM_INDEX)
 
     this.setState({
+      verticalDelta: 0,
       galleryIndex: index
     })
   }
@@ -129,10 +130,11 @@ class Layout extends Component {
     const galleriesCount = R.length(galleries)
     const MAX_ITEM_INDEX = galleriesCount - 1
 
-    const nextIndex = R.sum([this.state.galleryIndex, 1])
+    const nextIndex = R.inc(this.state.galleryIndex)
     const index = R.min(nextIndex, MAX_ITEM_INDEX)
 
     this.setState({
+      verticalDelta: 0,
       galleryIndex: index
     })
   }
@@ -159,7 +161,7 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        <GalleryWrapper index={galleryIndex}>
+        <GalleryWrapper index={galleryIndex} delta={this.state.verticalDelta}>
           {galleries.map((gallery, i) => {
             return (
               <Gallery
