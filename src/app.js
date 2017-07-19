@@ -4,6 +4,7 @@ import Page from './page'
 import WelcomeScreen from './welcome-screen'
 
 import { getForm } from './services/form'
+import { getProducts } from './services/product'
 
 const Root = styled.section`
   width: 100vw;
@@ -20,9 +21,9 @@ export default class App extends Component {
 
   async fetchForm () {
     try {
-      let form = await getForm('vDGGs9')
+      const form = await getForm('vDGGs9')
 
-      this.setState({ form, fetching: false })
+      this.setState({ products: getProducts(form), form, fetching: false })
     } catch (reason) {
       console.warn(reason)
     }
