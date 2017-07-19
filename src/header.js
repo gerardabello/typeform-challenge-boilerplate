@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 14px 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   background: ${p => tinycolor(p.theme.colors.background).lighten().toString()};
   display: flex;
