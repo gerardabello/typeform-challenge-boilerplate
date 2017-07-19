@@ -4,10 +4,7 @@ import CartIcon from './cart-icon'
 import tinycolor from 'tinycolor2'
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   box-sizing: border-box;
   padding: 14px 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
