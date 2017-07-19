@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
 import Swiper from 'react-swipeable'
 import R from 'ramda'
+import styled from 'styled-components'
 
-import Slider from './slider'
+import Gallery from './gallery'
 
-class Row extends Component {
+const Item = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #ff9529;
+  height: 100vh;
+  width: 100vw;
+  border: 5px solid white;
+`
+
+class Layout extends Component {
   constructor (props) {
     super(props)
 
@@ -16,7 +28,8 @@ class Row extends Component {
     this.swipingLeft = this.swipingLeft.bind(this)
 
     this.state = {
-      index: 0
+      galleryIndex: 0,
+      itemIndex: 0
     }
   }
 
@@ -29,21 +42,23 @@ class Row extends Component {
   }
 
   swipingRight (e, delta) {
-    console.log(delta)
     this.setState({
-      delta: -delta
+      itemDelta: -delta
     })
   }
 
   swipingLeft (e, delta) {
-    console.log(delta)
     this.setState({
-      delta: delta
+      itemDelta: delta
     })
   }
 
   goRight () {
-    const index = R.min(this.state.index + 1, 4)
+    const galleryLength = this.props.data[this.state.galleryIndex].length
+    const nextIndex = R.sum([this.state.index, 1])
+    const index = R.min(nextIndex, galleryLength)
+    console.log(nextIndex)
+    console.log(index)
     this.setState({
       index,
       delta: 0
@@ -51,7 +66,10 @@ class Row extends Component {
   }
 
   goLeft () {
-    const index = R.max(this.state.index - 1, 0)
+    console.log(nextIndex)
+    console.log(index)
+    const nextIndex = R.subtract(this.state.index, 1)
+    const index = R.max(nextIndex, 0)
     this.setState({
       index,
       delta: 0
@@ -68,14 +86,30 @@ class Row extends Component {
         onSwipedRight={this.goLeft}
         onSwipedLeft={this.goRight}
         flickThreshold={0.8}
+        style={{
+          overflow: 'hidden'
+        }}
         onTap={() => {
           console.log('Click!')
         }}
       >
-        <Slider selectedIndex={this.state.index} delta={this.state.delta} />
+        {this.props.data.map((gallery, i) => {
+          return (
+            <Gallery
+              key={i}
+              selectedIndex={this.state.itemIndex}
+              delta={this.state.itemDelta}
+              max={gallery.products.length}
+            >
+              {gallery.products.map((product, i) => {
+                return <Item key={i} />
+              })}
+            </Gallery>
+          )
+        })}
       </Swiper>
     )
   }
 }
 
-export default Row
+export default Layout

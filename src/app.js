@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Loader from 'halogen/SyncLoader'
+import Layout from './layout'
 
-import Page from './page'
 import WelcomeScreen from './welcome-screen'
 
 import { getForm } from './services/form'
@@ -11,7 +10,6 @@ import { getProducts } from './services/product'
 const Root = styled.section`
   width: 100vw;
   height: 100vh;
-  overflow: scroll;
   background: ${p => p.background};
 `
 
@@ -23,7 +21,7 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `
 
-export default class App extends Component {
+class App extends Component {
   constructor (props) {
     super(props)
     this.state = { fetching: true }
@@ -33,16 +31,7 @@ export default class App extends Component {
     try {
       const form = await getForm('vDGGs9')
 
-      const welcomeScreen = form.welcome_screens
-        ? form.welcome_screens[0]
-        : undefined
-
-      this.setState({
-        products: getProducts(form),
-        form,
-        welcomeScreen,
-        fetching: false
-      })
+      this.setState({ galleries: getProducts(form), form, fetching: false })
     } catch (reason) {
       console.warn(reason)
     }
@@ -61,7 +50,7 @@ export default class App extends Component {
       )
     }
 
-    const form = this.state.form
+    const { form, galleries } = this.state
 
     return (
       <Root background={form.theme.colors.background}>
@@ -69,11 +58,10 @@ export default class App extends Component {
           description={this.state.welcomeScreen.title}
           img={this.state.welcomeScreen.attachment.href}
         />
-        <Page />
-        <Page />
-        <Page />
-        <Page />
+        <Layout data={galleries} />
       </Root>
     )
   }
 }
+
+export default App
