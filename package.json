@@ -15,9 +15,12 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.5.10",
+    "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "styled-components": "^2.1.1"
+    "react-swipeable": "^4.0.1",
+    "styled-components": "^2.1.1",
   },
   "scripts": {
     "clean": "rm -rf dist",
