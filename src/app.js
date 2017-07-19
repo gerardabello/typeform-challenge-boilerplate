@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Layout from './layout'
 
+import Loader from 'halogen/SyncLoader'
+
 import WelcomeScreen from './welcome-screen'
 
 import { getForm } from './services/form'
-import { getProducts } from './services/product'
+import { getGalleries } from './services/galleries'
 
 const Root = styled.section`
   width: 100vw;
@@ -14,11 +16,11 @@ const Root = styled.section`
 `
 
 const LoaderWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+width: 100vw;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
 `
 
 class App extends Component {
@@ -31,7 +33,16 @@ class App extends Component {
     try {
       const form = await getForm('vDGGs9')
 
-      this.setState({ galleries: getProducts(form), form, fetching: false })
+      const welcomeScreen = form.welcome_screens
+        ? form.welcome_screens[0]
+        : undefined
+
+      this.setState({
+        galleries: getGalleries(form),
+        form,
+        welcomeScreen,
+        fetching: false
+      })
     } catch (reason) {
       console.warn(reason)
     }
@@ -58,7 +69,7 @@ class App extends Component {
           description={this.state.welcomeScreen.title}
           img={this.state.welcomeScreen.attachment.href}
         />
-        <Layout data={galleries} />
+        <Layout galleries={galleries} />
       </Root>
     )
   }
