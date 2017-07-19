@@ -9,6 +9,7 @@ import Product from './product'
 
 const GalleryWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: calc(100vh * ${props => props.children.length});
 
   transform: translateY(
@@ -41,8 +42,6 @@ class Layout extends Component {
       verticalDelta: 0,
       horitzontalDelta: 0
     }
-
-    console.log(this.state.itemIndex)
   }
 
   // This isnt being called, it's just for show off

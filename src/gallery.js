@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 const Root = styled.div`
   display: flex;
-  width: calc(100vw * ${props => props.children.length});
 
+  width: calc(100vw * ${props => props.children.length});
+  height: 100vh;
   transform: translateX(
     calc(
       ${props => -80 * props.selectedIndex}vw - ${props => props.delta}px + 10vw
