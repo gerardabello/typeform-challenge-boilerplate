@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Loader from 'halogen/SyncLoader'
+
 import Page from './page'
 import WelcomeScreen from './welcome-screen'
 
@@ -11,6 +13,14 @@ const Root = styled.section`
   height: 100vh;
   overflow: scroll;
   background: ${p => p.background};
+`
+
+const LoaderWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export default class App extends Component {
@@ -35,7 +45,11 @@ export default class App extends Component {
 
   render () {
     if (this.state.fetching) {
-      return <p> Fetching form... </p>
+      return (
+        <LoaderWrapper>
+          <Loader color='#444444' size='16px' />
+        </LoaderWrapper>
+      )
     }
 
     const form = this.state.form
