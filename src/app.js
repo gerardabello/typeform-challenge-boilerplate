@@ -33,7 +33,16 @@ export default class App extends Component {
     try {
       const form = await getForm('vDGGs9')
 
-      this.setState({ products: getProducts(form), form, fetching: false })
+      const welcomeScreen = form.welcome_screens
+        ? form.welcome_screens[0]
+        : undefined
+
+      this.setState({
+        products: getProducts(form),
+        form,
+        welcomeScreen,
+        fetching: false
+      })
     } catch (reason) {
       console.warn(reason)
     }
@@ -57,9 +66,8 @@ export default class App extends Component {
     return (
       <Root background={form.theme.colors.background}>
         <WelcomeScreen
-          title={form.title}
-          description='description foo'
-          img='https://goo.gl/images/o8kxDT'
+          description={this.state.welcomeScreen.title}
+          img={this.state.welcomeScreen.attachment.href}
         />
         <Page />
         <Page />

@@ -2,13 +2,6 @@ import React from 'react'
 import Page from './page'
 import styled from 'styled-components'
 
-const Title = styled.h1`
-  position: absolute;
-  top: 0;
-  text-align: center;
-  width: 100%;
-`
-
 const Picture = styled.div`
   height: 100%;
   width: 100%;
@@ -24,10 +17,9 @@ const Description = styled.div`
   text-align: center;
 `
 
-const WelcomeScreen = ({title, img, description}) => {
+const WelcomeScreen = ({ title, img, description }) => {
   return (
     <Page>
-      <Title>{title}</Title>
       <Picture><img src={img} /></Picture>
       <Description>{description}</Description>
     </Page>
