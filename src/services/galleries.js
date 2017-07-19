@@ -27,8 +27,6 @@ function getPriceForProduct (form, blockID, choiceID) {
     throw new Error('Block has no choices')
   }
 
-  console.log(block)
-
   let choice = block.properties.choices.find(choice => choice.id === choiceID)
 
   let logic = form.logic.find(b => b.ref === block.ref)
