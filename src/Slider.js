@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Swiper from 'react-swipeable'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Slide = styled.div`
@@ -13,39 +13,35 @@ const Slide = styled.div`
   border: 5px solid white;
 `
 
-// const Root = styled(Swiper)`
-//   display: flex;
-//   background: red;
-//   width: calc(100vw * 5);
-// `
+const Root = styled.div`
+  display: flex;
+  width: calc(100vw * 5);
+
+  transform: translateX(
+    calc(
+      ${props => -100 * props.selectedIndex}vw - ${props => props.delta}px
+    )
+  );
+  transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
+`
 
 class Slider extends Component {
-  constructor (props) {
-    super(props)
-
-    this.swiping = this.swiping.bind(this)
-    this.swiped = this.swiped.bind(this)
-  }
-
-  swiping (e, deltaX, deltaY, absX, absY, velocity) {
-    console.log('Swiping...', e, deltaX, deltaY, absX, absY, velocity)
-  }
-
-  swiped (e, deltaX, deltaY, isFlick, velocity) {
-    console.log('Swiped...', e, deltaX, deltaY, isFlick, velocity)
-  }
-
   render () {
     return (
-      <Swiper onSwiping={this.swiping} onSwiped={this.swiped}>
+      <Root selectedIndex={this.props.selectedIndex} delta={this.props.delta}>
         <Slide>Slide 1</Slide>
         <Slide>Slide 2</Slide>
         <Slide>Slide 3</Slide>
         <Slide>Slide 4</Slide>
         <Slide>Slide 5</Slide>
-      </Swiper>
+      </Root>
     )
   }
+}
+
+Slider.propTypes = {
+  selectedIndex: PropTypes.number,
+  delta: PropTypes.number
 }
 
 export default Slider

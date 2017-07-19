@@ -26,6 +26,7 @@ module.exports = {
     ]
   },
   devServer: {
+    host: '0.0.0.0',
     quiet: false,
     noInfo: false,
     contentBase: './',
