@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Page from './page'
 import WelcomeScreen from './welcome-screen'
 
-// Create a Wrapper component that'll render a <section> tag with some styles
+import { getForm } from './services/form'
+
 const Root = styled.section`
   width: 100vw;
   height: 100vh;
@@ -11,6 +12,25 @@ const Root = styled.section`
 `
 
 export default class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  async fetchForm () {
+    try {
+      let form = await getForm('vDGGs9')
+
+      this.setState({ form })
+    } catch (reason) {
+      console.warn(reason)
+    }
+  }
+
+  componentDidMount () {
+    this.fetchForm()
+  }
+
   render () {
     return (
       <Root>

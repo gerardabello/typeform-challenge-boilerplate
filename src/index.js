@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './app.jsx'
+import App from './app'
 
-export function mount ({rootNode}) {
+require('babel-polyfill')
+
+export function mount ({ rootNode }) {
   ReactDOM.render(<App />, rootNode)
 }
 
