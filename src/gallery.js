@@ -15,6 +15,7 @@ const Root = styled.div`
 `
 
 const Title = styled.h1`
+  color: ${p => p.theme.colors.question};
   position: absolute;
 `
 

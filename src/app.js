@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import Layout from './layout'
 
 import Loader from 'halogen/SyncLoader'
 
-import WelcomeScreen from './welcome-screen'
-
 import { getForm } from './services/form'
 import { getGalleries } from './services/galleries'
+
+import colorateButton from './services/colors'
 
 const Root = styled.section`
   width: 100vw;
@@ -65,10 +65,15 @@ class App extends Component {
 
     const { form, galleries } = this.state
 
+    let theme = form.theme
+    theme.colors.buttonText = colorateButton(theme.colors.button).text
+
     return (
-      <Root background={form.theme.colors.background} font={form.theme.font}>
-        <Layout galleries={galleries} />
-      </Root>
+      <ThemeProvider theme={theme}>
+        <Root background={form.theme.colors.background} font={form.theme.font}>
+          <Layout galleries={galleries} />
+        </Root>
+      </ThemeProvider>
     )
   }
 }

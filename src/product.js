@@ -36,11 +36,12 @@ const Button = styled.button`
   text-align: center;
   background: blue;
   border-radius: 3px;
-  color: white;
   border: none;
   outline: none;
   font-size: 14px;
   padding: 12px 20px;
+  color: ${p => p.theme.colors.buttonText};
+  background: ${p => p.theme.colors.button};
 `
 
 class Product extends Component {
