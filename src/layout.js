@@ -125,6 +125,7 @@ class Layout extends Component {
               <Gallery
                 key={i}
                 selectedIndex={this.state.itemIndex[i]}
+                title={gallery.title}
                 delta={this.state.delta}
                 max={gallery.products.length - 1}
               >

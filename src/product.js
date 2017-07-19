@@ -3,15 +3,15 @@ import styled from 'styled-components'
 
 const Root = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  min-width: 80vw;
   width: 80vw;
 `
 
 const Picture = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,17 +23,24 @@ const Picture = styled.div`
 `
 
 const Description = styled.div`
-  position: absolute;
-  bottom: 0;
   width: 100%;
   text-align: center;
 `
 
 const Price = styled.div`
-  position: absolute;
-  bottom: 0;
   width: 100%;
   text-align: center;
+`
+
+const Button = styled.button`
+  text-align: center;
+  background: blue;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 12px 20px;
 `
 
 class Product extends Component {
@@ -44,6 +51,7 @@ class Product extends Component {
         <Picture><img src={img} /></Picture>
         <Description>{description}</Description>
         <Price>{price}e</Price>
+        <Button>Add to cart</Button>
       </Root>
     )
   }

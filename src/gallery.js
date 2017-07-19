@@ -14,10 +14,17 @@ const Root = styled.div`
   transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
 `
 
+const Title = styled.h1`
+  position: absolute;
+`
+
 class Gallery extends Component {
   render () {
     return (
       <Root selectedIndex={this.props.selectedIndex} delta={this.props.delta}>
+        <Title>
+          {this.props.title}
+        </Title>
         {this.props.children}
       </Root>
     )

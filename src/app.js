@@ -14,6 +14,7 @@ const Root = styled.section`
   height: 100vh;
   overflow: hidden;
   background: ${p => p.background};
+  font-family: '${p => p.font}', sans-serif
 `
 
 const LoaderWrapper = styled.div`
@@ -65,7 +66,7 @@ class App extends Component {
     const { form, galleries } = this.state
 
     return (
-      <Root background={form.theme.colors.background}>
+      <Root background={form.theme.colors.background} font={form.theme.font}>
         <Layout galleries={galleries} />
       </Root>
     )
