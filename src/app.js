@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import Layout from './layout'
 
 import Loader from 'halogen/SyncLoader'
+import Header from './header'
 
 import { getForm } from './services/form'
 import { getGalleries } from './services/galleries'
@@ -72,6 +73,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Root background={form.theme.colors.background} font={form.theme.font}>
+          <Header title='foo' currency='€' amount='12.12' items='1' />
           <Layout galleries={galleries} />
         </Root>
       </ThemeProvider>
