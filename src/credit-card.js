@@ -13,8 +13,7 @@ import {
   Label,
   CardHolder,
   ExpirationDate,
-  Ccv,
-  CcvLabel
+  Ccv
 } from './credit-card.styles'
 import CardInput from './card-input'
 
@@ -27,8 +26,14 @@ class CreditCard extends Component {
       expirationMonth: '',
       expirationYear: '',
       ccv: '',
-      showBack: true
+      showBack: false
     }
+  }
+  showFront () {
+    this.setState({showBack: false})
+  }
+  showBack () {
+    this.setState({showBack: true})
   }
   render () {
     const {
@@ -68,6 +73,7 @@ class CreditCard extends Component {
                 placeholder='Type card number'
                 value={number}
                 onChange={(value) => this.setState({number: value})}
+                onFocus={() => this.showFront()}
               />
             </CardNumber>
             <CardHolder>
@@ -76,6 +82,7 @@ class CreditCard extends Component {
                 placeholder='Type your name'
                 value={holder}
                 onChange={(value) => this.setState({holder: value})}
+                onFocus={() => this.showFront()}
               />
             </CardHolder>
             <ExpirationDate>
@@ -85,6 +92,7 @@ class CreditCard extends Component {
                 placeholder='MM'
                 value={expirationMonth}
                 onChange={(value) => this.setState({expirationMonth: value})}
+                onFocus={() => this.showFront()}
               />
               <span>/</span>
               <CardInput
@@ -92,6 +100,7 @@ class CreditCard extends Component {
                 placeholder='YY'
                 value={expirationYear}
                 onChange={(value) => this.setState({expirationYear: value})}
+                onFocus={() => this.showFront()}
               />
             </ExpirationDate>
           </Front>
@@ -120,8 +129,10 @@ class CreditCard extends Component {
               <CardInput
                 style={{textAlign: 'right'}}
                 placeholder='CCV'
+                placeholderColor='black'
                 value={ccv}
                 onChange={(value) => this.setState({ccv: value})}
+                onFocus={() => this.showBack()}
               />
             </Ccv>
           </Back>

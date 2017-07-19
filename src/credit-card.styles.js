@@ -173,8 +173,3 @@ display: flex;
 align-items: center;
 justify-content: flex-end;
 `
-
-export const CcvLabel = styled.label`
-margin: -25px 0 14px;
-color: #fff;
-`

@@ -12,16 +12,18 @@ const Input = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: rgba(125, 125, 125, 0.6);
+    color: ${(props) => props.placeholderColor};
+    opacity: 0.6;
   }
 `
 
-const CardInput = ({value, onChange, ...props}) => {
+const CardInput = ({value, onChange, placeholderColor = 'white', ...props}) => {
   return (
     <Input
       {...props}
       type='text'
       value={value}
+      placeholderColor={placeholderColor}
       onChange={(e) => onChange(e.target.value)}
     />
   )
