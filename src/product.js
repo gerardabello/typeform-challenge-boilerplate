@@ -5,11 +5,8 @@ const Root = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  background-color: #ff9529;
   height: 100vh;
-  width: 100vw;
-  border: 5px solid white;
+  width: 80vw;
 `
 
 const Picture = styled.div`
@@ -18,8 +15,10 @@ const Picture = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-   img {
-    width: 80vw;
+  img {
+    border-radius: 5px;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.28);
+    width: 70vw;
   }
 `
 

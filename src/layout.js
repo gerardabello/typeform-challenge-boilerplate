@@ -4,6 +4,7 @@ import R from 'ramda'
 import styled from 'styled-components'
 
 import Gallery from './gallery'
+
 import Product from './product'
 
 const GalleryWrapper = styled.div`
@@ -118,27 +119,27 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        {galleries.map((gallery, i) => {
-          return (
-            <Gallery
-              key={i}
-              selectedIndex={this.state.itemIndex[i]}
-              delta={this.state.delta}
-              max={gallery.products.length - 1}
-            >
-              {gallery.products.map((product, i) => {
-                return (
+        <GalleryWrapper index={this.state.galleryIndex}>
+          {galleries.map((gallery, i) => {
+            return (
+              <Gallery
+                key={i}
+                selectedIndex={this.state.itemIndex[i]}
+                delta={this.state.delta}
+                max={gallery.products.length - 1}
+              >
+                {gallery.products.map((product, i) =>
                   <Product
                     name={product.name}
                     img={product.image}
                     price={product.price}
                     key={i}
                   />
-                )
-              })}
-            </Gallery>
-          )
-        })}
+                )}
+              </Gallery>
+            )
+          })}
+        </GalleryWrapper>
       </Swiper>
     )
   }

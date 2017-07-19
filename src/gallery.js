@@ -8,7 +8,7 @@ const Root = styled.div`
 
   transform: translateX(
     calc(
-      ${props => -100 * props.selectedIndex}vw - ${props => props.delta}px
+      ${props => -80 * props.selectedIndex}vw - ${props => props.delta}px + 10vw
     )
   );
   transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
