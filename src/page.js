@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 const Fitter = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
 `
