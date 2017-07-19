@@ -4,17 +4,7 @@ import R from 'ramda'
 import styled from 'styled-components'
 
 import Gallery from './gallery'
-
-const Item = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  background-color: aquamarine;
-  height: 100vh;
-  width: 100vw;
-  border: 5px solid white;
-`
+import Product from './product'
 
 const GalleryWrapper = styled.div`
   display: flex;
@@ -128,22 +118,27 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        <GalleryWrapper index={this.state.galleryIndex}>
-          {galleries.map((gallery, i) => {
-            return (
-              <Gallery
-                key={i}
-                selectedIndex={this.state.itemIndex[i]}
-                delta={this.state.delta}
-                max={gallery.products.length - 1}
-              >
-                {gallery.products.map((product, i) => {
-                  return <Item key={i} />
-                })}
-              </Gallery>
-            )
-          })}
-        </GalleryWrapper>
+        {galleries.map((gallery, i) => {
+          return (
+            <Gallery
+              key={i}
+              selectedIndex={this.state.itemIndex[i]}
+              delta={this.state.delta}
+              max={gallery.products.length - 1}
+            >
+              {gallery.products.map((product, i) => {
+                return (
+                  <Product
+                    name={product.name}
+                    img={product.image}
+                    price={product.price}
+                    key={i}
+                  />
+                )
+              })}
+            </Gallery>
+          )
+        })}
       </Swiper>
     )
   }
