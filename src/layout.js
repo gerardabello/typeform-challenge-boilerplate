@@ -50,15 +50,13 @@ class Layout extends Component {
 
   goRight () {
     const galleries = R.prop('galleries', this.props)
-    const gallery = R.nth(this.state.galleryIndex, galleries)
-    const galleryLength = R.length(R.prop('products', gallery))
-    const currentItemIndex = R.nth(
-      this.state.galleryIndex,
-      this.state.itemIndex
-    )
+    const galleryIndex = R.prop('galleryIndex', this.state)
+    const gallery = R.nth(galleryIndex, galleries)
+    const productCount = R.length(R.prop('products', gallery))
+    const currentItemIndex = R.nth(galleryIndex, this.state.itemIndex)
 
     const nextIndex = R.sum([currentItemIndex, 1])
-    const index = R.min(nextIndex, galleryLength - 1)
+    const index = R.min(nextIndex, productCount - 1)
 
     const { itemIndex } = this.state
     itemIndex[this.state.galleryIndex] = index
@@ -87,16 +85,27 @@ class Layout extends Component {
   }
 
   goUp () {
-    console.log('goUp')
-    this.setState({
-      galleryIndex: this.state.galleryIndex - 1
-    })
-  }
-  goDown () {
-    console.log('goDown')
+    const nextIndex = R.subtract(this.state.galleryIndex, 1)
+    const index = R.max(nextIndex, 0)
+
+    console.log('goup', index)
 
     this.setState({
-      galleryIndex: this.state.galleryIndex + 1
+      galleryIndex: index
+    })
+  }
+
+  goDown () {
+    const galleries = R.prop('galleries', this.props)
+    const galleriesCount = R.length(galleries)
+
+    const nextIndex = R.sum([this.state.galleryIndex, 1])
+    const index = R.min(nextIndex, galleriesCount - 1)
+
+    console.log('godown', index)
+
+    this.setState({
+      galleryIndex: index
     })
   }
 
@@ -129,14 +138,14 @@ class Layout extends Component {
                 delta={this.state.delta}
                 max={gallery.products.length - 1}
               >
-                {gallery.products.map((product, i) =>
+                {gallery.products.map((product, i) => (
                   <Product
                     name={product.name}
                     img={product.image}
                     price={product.price}
                     key={i}
                   />
-                )}
+                ))}
               </Gallery>
             )
           })}
