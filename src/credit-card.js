@@ -16,15 +16,17 @@ import {
   Ccv,
   CcvLabel
 } from './credit-card.styles'
+import CardInput from './card-input'
 
 class CreditCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      number: '123',
-      holder: 'ra',
-      expirationDate: '234',
-      cvv: '34324',
+      number: '',
+      holder: '',
+      expirationMonth: '',
+      expirationYear: '',
+      cvv: '',
       showBack: false
     }
   }
@@ -32,12 +34,13 @@ class CreditCard extends Component {
     const {
       number,
       holder,
-      expirationDate,
+      expirationMonth,
+      expirationYear,
       cvv,
       onChange
     } = this.state
     return (
-      <CardBox onClick={() => this.setState({showBack: !this.state.showBack})}>
+      <CardBox>
         <Flip turn={this.state.showBack}>
           <Front>
             <Chip />
@@ -60,14 +63,36 @@ class CreditCard extends Component {
                 </g>
               </LogoSvg>
             </Logo>
-            <CardNumber />
+            <CardNumber>
+              <CardInput
+                placeholder='Type card number'
+                value={number}
+                onChange={(value) => this.setState({number: value})}
+              />
+            </CardNumber>
             <CardHolder>
               <Label>Card holder</Label>
-              <div>Raquel</div>
+              <CardInput
+                placeholder='Type your name'
+                value={holder}
+                onChange={(value) => this.setState({holder: value})}
+              />
             </CardHolder>
             <ExpirationDate>
               <Label>Expires</Label>
-              <div>23/123</div>
+              <CardInput
+                style={{width: '30px'}}
+                placeholder='MM'
+                value={expirationMonth}
+                onChange={(value) => this.setState({expirationMonth: value})}
+              />
+              <span>/</span>
+              <CardInput
+                style={{width: '30px'}}
+                placeholder='YY'
+                value={expirationYear}
+                onChange={(value) => this.setState({expirationYear: value})}
+              />
             </ExpirationDate>
           </Front>
           <Back>

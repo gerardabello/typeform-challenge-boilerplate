@@ -122,6 +122,7 @@ position: absolute;
 margin: 0 auto;
 top: 103px;
 left: 19px;
+right: 19px;
 font-size: 38px;
 `
 
@@ -148,12 +149,11 @@ export const ExpirationDate = styled.div`
 position: absolute;
 margin: 0 auto;
 top: 180px;
-left: 19px;
 font-size: 22px;
 text-transform: capitalize;
 text-align: right;
-left: auto;
 right: 20px;
+width: 80px;
 `
 
 export const Ccv = styled.div`
