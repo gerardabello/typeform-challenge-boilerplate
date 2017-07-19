@@ -12,15 +12,16 @@ import { getGalleries } from './services/galleries'
 const Root = styled.section`
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   background: ${p => p.background};
 `
 
 const LoaderWrapper = styled.div`
-width: 100vw;
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 class App extends Component {
@@ -65,14 +66,14 @@ class App extends Component {
 
     return (
       <Root background={form.theme.colors.background}>
-        <WelcomeScreen
-          description={this.state.welcomeScreen.title}
-          img={this.state.welcomeScreen.attachment.href}
-        />
         <Layout galleries={galleries} />
       </Root>
     )
   }
 }
+// <WelcomeScreen
+//   description={this.state.welcomeScreen.title}
+//   img={this.state.welcomeScreen.attachment.href}
+// />
 
 export default App

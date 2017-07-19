@@ -10,20 +10,32 @@ const Item = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: #ff9529;
+  background-color: aquamarine;
   height: 100vh;
   width: 100vw;
   border: 5px solid white;
+`
+
+const GalleryWrapper = styled.div`
+  display: flex;
+  height: calc(100vh * ${props => props.children.length});
+
+  transform: translateY(
+    calc(
+      ${props => -100 * props.index}vh
+    )
+  );
+  transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
 `
 
 class Layout extends Component {
   constructor (props) {
     super(props)
 
-    this.swiping = this.swiping.bind(this)
-    this.swiped = this.swiped.bind(this)
     this.goRight = this.goRight.bind(this)
     this.goLeft = this.goLeft.bind(this)
+    this.goUp = this.goUp.bind(this)
+    this.goDown = this.goDown.bind(this)
     this.swipingRight = this.swipingRight.bind(this)
     this.swipingLeft = this.swipingLeft.bind(this)
 
@@ -31,14 +43,6 @@ class Layout extends Component {
       galleryIndex: 0,
       itemIndex: R.times(R.always(0), R.length(this.props.galleries))
     }
-  }
-
-  swiping (e, deltaX, deltaY, absX, absY, velocity) {
-    // console.log('Swiping...', deltaX, deltaY, absX, absY, velocity)
-  }
-
-  swiped (e, deltaX, deltaY, isFlick, velocity) {
-    // console.log('Swiped...', e, deltaX, deltaY, isFlick, velocity)
   }
 
   swipingRight (e, delta) {
@@ -57,7 +61,10 @@ class Layout extends Component {
     const galleries = R.prop('galleries', this.props)
     const gallery = R.nth(this.state.galleryIndex, galleries)
     const galleryLength = R.length(R.prop('products', gallery))
-    const currentItemIndex = this.state.itemIndex[this.state.galleryIndex]
+    const currentItemIndex = R.nth(
+      this.state.galleryIndex,
+      this.state.itemIndex
+    )
 
     const nextIndex = R.sum([currentItemIndex, 1])
     const index = R.min(nextIndex, galleryLength - 1)
@@ -88,13 +95,27 @@ class Layout extends Component {
     })
   }
 
+  goUp () {
+    console.log('goUp')
+    this.setState({
+      galleryIndex: this.state.galleryIndex - 1
+    })
+  }
+  goDown () {
+    console.log('goDown')
+
+    this.setState({
+      galleryIndex: this.state.galleryIndex + 1
+    })
+  }
+
   render () {
     const { galleries } = this.props
 
     return (
       <Swiper
-        onSwiping={this.swiping}
-        onSwiped={this.swiped}
+        onSwipedUp={this.goDown}
+        onSwipedDown={this.goUp}
         onSwipingLeft={this.swipingLeft}
         onSwipingRight={this.swipingRight}
         onSwipedRight={this.goLeft}
@@ -107,20 +128,22 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        {galleries.map((gallery, i) => {
-          return (
-            <Gallery
-              key={i}
-              selectedIndex={this.state.itemIndex[i]}
-              delta={this.state.delta}
-              max={gallery.products.length - 1}
-            >
-              {gallery.products.map((product, i) => {
-                return <Item key={i} />
-              })}
-            </Gallery>
-          )
-        })}
+        <GalleryWrapper index={this.state.galleryIndex}>
+          {galleries.map((gallery, i) => {
+            return (
+              <Gallery
+                key={i}
+                selectedIndex={this.state.itemIndex[i]}
+                delta={this.state.delta}
+                max={gallery.products.length - 1}
+              >
+                {gallery.products.map((product, i) => {
+                  return <Item key={i} />
+                })}
+              </Gallery>
+            )
+          })}
+        </GalleryWrapper>
       </Swiper>
     )
   }
