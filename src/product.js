@@ -46,11 +46,11 @@ const Button = styled.button`
 
 class Product extends Component {
   render () {
-    const { img, price, description } = this.props
+    const { img, price, name } = this.props
     return (
       <Root>
         <Picture><img src={img} /></Picture>
-        <Description>{description}</Description>
+        <Description>{name}</Description>
         <Price>{price}e</Price>
         <Button>Add to cart</Button>
       </Root>
