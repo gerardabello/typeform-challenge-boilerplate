@@ -88,8 +88,6 @@ class Layout extends Component {
     const nextIndex = R.subtract(this.state.galleryIndex, 1)
     const index = R.max(nextIndex, 0)
 
-    console.log('goup', index)
-
     this.setState({
       galleryIndex: index
     })
@@ -101,8 +99,6 @@ class Layout extends Component {
 
     const nextIndex = R.sum([this.state.galleryIndex, 1])
     const index = R.min(nextIndex, galleriesCount - 1)
-
-    console.log('godown', index)
 
     this.setState({
       galleryIndex: index
