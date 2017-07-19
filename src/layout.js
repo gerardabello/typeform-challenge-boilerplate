@@ -29,7 +29,7 @@ class Layout extends Component {
 
     this.state = {
       galleryIndex: 0,
-      itemIndex: 0
+      itemIndex: R.times(R.always(0), R.length(this.props.galleries))
     }
   }
 
@@ -43,40 +43,54 @@ class Layout extends Component {
 
   swipingRight (e, delta) {
     this.setState({
-      itemDelta: -delta
+      delta: -delta
     })
   }
 
   swipingLeft (e, delta) {
     this.setState({
-      itemDelta: delta
+      delta: delta
     })
   }
 
   goRight () {
-    const galleryLength = this.props.data[this.state.galleryIndex].length
-    const nextIndex = R.sum([this.state.index, 1])
-    const index = R.min(nextIndex, galleryLength)
-    console.log(nextIndex)
-    console.log(index)
+    const galleries = R.prop('galleries', this.props)
+    const gallery = R.nth(this.state.galleryIndex, galleries)
+    const galleryLength = R.length(R.prop('products', gallery))
+    const currentItemIndex = this.state.itemIndex[this.state.galleryIndex]
+
+    const nextIndex = R.sum([currentItemIndex, 1])
+    const index = R.min(nextIndex, galleryLength - 1)
+
+    const { itemIndex } = this.state
+    itemIndex[this.state.galleryIndex] = index
+
     this.setState({
-      index,
+      itemIndex,
       delta: 0
     })
   }
 
   goLeft () {
-    console.log(nextIndex)
-    console.log(index)
-    const nextIndex = R.subtract(this.state.index, 1)
+    const { itemIndex } = this.state
+
+    const nextIndex = R.subtract(
+      this.state.itemIndex[this.state.galleryIndex],
+      1
+    )
+
     const index = R.max(nextIndex, 0)
+    itemIndex[this.state.galleryIndex] = index
+
     this.setState({
-      index,
+      itemIndex,
       delta: 0
     })
   }
 
   render () {
+    const { galleries } = this.props
+
     return (
       <Swiper
         onSwiping={this.swiping}
@@ -93,13 +107,13 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        {this.props.data.map((gallery, i) => {
+        {galleries.map((gallery, i) => {
           return (
             <Gallery
               key={i}
-              selectedIndex={this.state.itemIndex}
-              delta={this.state.itemDelta}
-              max={gallery.products.length}
+              selectedIndex={this.state.itemIndex[i]}
+              delta={this.state.delta}
+              max={gallery.products.length - 1}
             >
               {gallery.products.map((product, i) => {
                 return <Item key={i} />
