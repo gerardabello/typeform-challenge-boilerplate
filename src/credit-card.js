@@ -26,8 +26,8 @@ class CreditCard extends Component {
       holder: '',
       expirationMonth: '',
       expirationYear: '',
-      cvv: '',
-      showBack: false
+      ccv: '',
+      showBack: true
     }
   }
   render () {
@@ -36,7 +36,7 @@ class CreditCard extends Component {
       holder,
       expirationMonth,
       expirationYear,
-      cvv,
+      ccv,
       onChange
     } = this.state
     return (
@@ -117,8 +117,12 @@ class CreditCard extends Component {
               </LogoSvg>
             </Logo>
             <Ccv>
-              <CcvLabel>CCV</CcvLabel>
-              <div></div>
+              <CardInput
+                style={{textAlign: 'right'}}
+                placeholder='CCV'
+                value={ccv}
+                onChange={(value) => this.setState({ccv: value})}
+              />
             </Ccv>
           </Back>
         </Flip>

@@ -169,6 +169,9 @@ margin: 0 auto;
 color: #000;
 text-align: right;
 padding: 10px;
+display: flex;
+align-items: center;
+justify-content: flex-end;
 `
 
 export const CcvLabel = styled.label`

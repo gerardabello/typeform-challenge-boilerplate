@@ -12,7 +12,7 @@ const Input = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(125, 125, 125, 0.6);
   }
 `
 
