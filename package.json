@@ -19,6 +19,7 @@
     "babel-polyfill": "^6.23.0",
     "halogen": "^0.2.0",
     "isomorphic-fetch": "^2.2.1",
+    "muicss": "^0.9.18",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
     "react": "^15.6.1",

@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import R from 'ramda'
 
 import FlatCreditCard from './flat-credit-card.js'
 import Modal from './mobile-modal.js'
 import ShoppingCart from './shopping-cart'
+import Shipment from './shipment'
 
 const Wrapper = styled.div`
   transform: translateX(
@@ -23,14 +25,13 @@ class Checkout extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { pageIndex: 0 }
+    this.state = { pageIndex: 1 }
 
     this.onNext = this.onNext.bind(this)
   }
 
   onNext () {
-    console.log('next')
-    this.setState({ pageIndex: this.state.pageIndex + 1 })
+    this.setState({ pageIndex: R.inc(this.state.pageIndex) })
   }
 
   render () {
@@ -42,7 +43,12 @@ class Checkout extends React.Component {
             <ShoppingCart onNext={this.onNext} cart={cart} />
           </Section>
           <Section>
-            <FlatCreditCard onChange={(cardDetails) => console.log(cardDetails)} />
+            <FlatCreditCard
+              onChange={cardDetails => console.log(cardDetails)}
+            />
+          </Section>
+          <Section>
+            <Shipment />
           </Section>
         </Wrapper>
       </Modal>
