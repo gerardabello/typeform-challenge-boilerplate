@@ -22,7 +22,13 @@ const MAX_FIELDS_LENGTH = {
   expirationYear: 2,
   ccv: 3
 }
-
+const FIELDS_ORDER = [
+  'number',
+  'holder',
+  'expirationMonth',
+  'expirationYear',
+  'ccv'
+]
 class CreditCard extends Component {
   constructor (props) {
     super(props)
@@ -41,6 +47,11 @@ class CreditCard extends Component {
     const maxLength = MAX_FIELDS_LENGTH[propName]
     if (value.toString().length > maxLength) return
     this.setState({ [propName]: value }, () => {
+      if (MAX_FIELDS_LENGTH[propName] === value.length) {
+        const nextIndex = FIELDS_ORDER.indexOf(propName) + 1
+        const nextField = FIELDS_ORDER[nextIndex]
+        if (nextField) findDOMNode(this.refs[nextField]).focus()
+      }
       this.triggerChange()
     })
   }
@@ -74,6 +85,7 @@ class CreditCard extends Component {
             <CardHolder>
               <Label>Card holder</Label>
               <CardInput
+                ref='holder'
                 placeholder='Type your name'
                 value={holder}
                 onChange={(value) => this.setValue('holder', value)}
@@ -82,6 +94,7 @@ class CreditCard extends Component {
             <ExpirationDate>
               <Label>Expires</Label>
               <CardInput
+                ref='expirationMonth'
                 style={{ width: '6vmin' }}
                 placeholder='MM'
                 isNumeric
@@ -90,6 +103,7 @@ class CreditCard extends Component {
               />
               <DateDivider>/</DateDivider>
               <CardInput
+                ref='expirationYear'
                 style={{ width: '6vmin' }}
                 placeholder='YY'
                 isNumeric
