@@ -1,6 +1,12 @@
 import React from 'react'
-import Page from './page'
 import styled from 'styled-components'
+
+const Fitter = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: inset 0 0 0 1px black;
+`
 
 const Picture = styled.div`
   height: 100%;
@@ -19,10 +25,10 @@ const Description = styled.div`
 
 const WelcomeScreen = ({ title, img, description }) => {
   return (
-    <Page>
+    <Fitter>
       <Picture><img src={img} /></Picture>
       <Description>{description}</Description>
-    </Page>
+    </Fitter>
   )
 }
 
