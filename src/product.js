@@ -11,6 +11,8 @@ const Root = styled.div`
   width: 80vw;
   opacity: ${props => (props.isActive ? 1 : 0.75)};
   transition: all 300ms ease;
+  transform: scale(${props => (props.isActive ? 1.03 : 0.9)});
+  transition: all ease 300ms;
 `
 
 const Wrapper = styled.div`
@@ -18,7 +20,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px ${props => (props.isActive ? '10px' : '30px')} 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   overflow: hidden;
   padding-bottom: 30px;
@@ -79,7 +81,7 @@ class Product extends Component {
     const { img, price, name } = this.props
     return (
       <Root isActive={this.props.isActive}>
-        <Wrapper>
+        <Wrapper isActive={this.props.isActive}>
           <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
           <Description>{name}</Description>
           <Price>{Math.floor(price * 100) / 100}€</Price>
