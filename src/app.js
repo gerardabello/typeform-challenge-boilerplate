@@ -5,6 +5,7 @@ import R from 'ramda'
 
 import Loader from 'halogen/SyncLoader'
 import Header from './header'
+import Checkout from './checkout'
 
 import { getForm } from './services/form'
 import { getNormalizedForm } from './services/galleries'
@@ -90,6 +91,7 @@ class App extends Component {
             items={R.length(this.state.cart)}
           />
           <Layout fields={form.fields} handleClick={this.addProduct} />
+          <Checkout open={false} />
         </Root>
       </ThemeProvider>
     )
