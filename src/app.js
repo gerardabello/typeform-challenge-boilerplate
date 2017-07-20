@@ -59,14 +59,15 @@ class App extends Component {
 
   async fetchForm () {
     try {
-      const form = await getForm('vDGGs9')
+      const form = await getForm(this.props.formID)
 
       const welcomeScreen = form.welcome_screens
         ? form.welcome_screens[0]
         : undefined
 
       injectGlobal`
-        @import url('https://fonts.googleapis.com/css?family=${form.theme.font}');
+        @import url('https://fonts.googleapis.com/css?family=${form.theme
+          .font}');
       `
 
       this.setState({

@@ -186,7 +186,7 @@ class Layout extends Component {
                         key={j}
                         isActive={
                           this.state.itemIndex[i] === j &&
-                            this.state.fieldIndex === i
+                          this.state.fieldIndex === i
                         }
                         name={product.name}
                         img={product.image}
@@ -210,7 +210,7 @@ class Layout extends Component {
                 <WelcomeScreen
                   key={i}
                   description={field.title}
-                  img={field.attachment.href}
+                  img={field.attachment && field.attachment.href}
                 />
               )
             }
