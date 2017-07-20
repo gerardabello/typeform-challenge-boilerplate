@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CreditCard from './credit-card.js'
+import FlatCreditCard from './flat-credit-card.js'
 import Modal from './mobile-modal.js'
 import ShoppingCart from './shopping-cart'
 
@@ -42,7 +42,7 @@ class Checkout extends React.Component {
             <ShoppingCart onNext={this.onNext} cart={cart} />
           </Section>
           <Section>
-            <CreditCard />
+            <FlatCreditCard />
           </Section>
         </Wrapper>
       </Modal>

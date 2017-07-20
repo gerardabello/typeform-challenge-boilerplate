@@ -16,6 +16,14 @@ import {
 } from './credit-card.styles'
 import CardInput from './card-input'
 
+const FIELDS_LENGTH = {
+  number: 16,
+  holder: 20,
+  expirationMonth: 2,
+  expirationYear: 2,
+  ccv: 3
+}
+
 class CreditCard extends Component {
   constructor (props) {
     super(props)
@@ -34,9 +42,23 @@ class CreditCard extends Component {
   showBack () {
     this.setState({showBack: true})
   }
-  setValue (propName, maxLength, value) {
+  setValue (propName, value) {
+    const maxLength = FIELDS_LENGTH[propName]
     if (value.toString().length > maxLength) return
-    this.setState({[propName]: value})
+    this.setState({[propName]: value}, () => {
+      this.triggerChange()
+    })
+  }
+  triggerChange () {
+    const isDone = Object.keys(FIELDS_LENGTH)
+      .every((key) => this.state[key].length === FIELDS_LENGTH[key])
+    if (isDone) {
+      const {
+        showBack, // eslint-disable-line
+        ...cardDetails
+      } = this.state
+      this.props.onChange(cardDetails)
+    }
   }
   render () {
     const {
@@ -44,8 +66,7 @@ class CreditCard extends Component {
       holder,
       expirationMonth,
       expirationYear,
-      ccv,
-      onChange
+      ccv
     } = this.state
     return (
       <CardBox>
@@ -75,7 +96,7 @@ class CreditCard extends Component {
               <CardInput
                 placeholder='Type card number'
                 value={number}
-                onChange={(value) => this.setValue('number', 16, value)}
+                onChange={(value) => this.setValue('number', value)}
                 onFocus={() => this.showFront()}
               />
             </CardNumber>
@@ -84,7 +105,7 @@ class CreditCard extends Component {
               <CardInput
                 placeholder='Type your name'
                 value={holder}
-                onChange={(value) => this.setValue('holder', 20, value)}
+                onChange={(value) => this.setValue('holder', value)}
                 onFocus={() => this.showFront()}
               />
             </CardHolder>
@@ -94,7 +115,7 @@ class CreditCard extends Component {
                 style={{width: '30px'}}
                 placeholder='MM'
                 value={expirationMonth}
-                onChange={(value) => this.setValue('expirationMonth', 2, value)}
+                onChange={(value) => this.setValue('expirationMonth', value)}
                 onFocus={() => this.showFront()}
               />
               <span>/</span>
@@ -102,7 +123,7 @@ class CreditCard extends Component {
                 style={{width: '30px'}}
                 placeholder='YY'
                 value={expirationYear}
-                onChange={(value) => this.setValue('expirationYear', 2, value)}
+                onChange={(value) => this.setValue('expirationYear', value)}
                 onFocus={() => this.showFront()}
               />
             </ExpirationDate>
@@ -134,7 +155,7 @@ class CreditCard extends Component {
                 placeholder='CCV'
                 placeholderColor='black'
                 value={ccv}
-                onChange={(value) => this.setValue('ccv', 3, value)}
+                onChange={(value) => this.setValue('ccv', value)}
                 onFocus={() => this.showBack()}
               />
             </Ccv>
