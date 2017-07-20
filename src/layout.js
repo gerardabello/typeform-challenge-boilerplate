@@ -82,7 +82,9 @@ class Layout extends Component {
     const fields = R.prop('fields', this.props)
     const fieldIndex = R.prop('fieldIndex', this.state)
     const field = R.nth(fieldIndex, fields)
-    if (field.type != 'picture_choice') {
+
+    // LETS FUCKING GO BOYS!
+    if (field.type !== 'picture_choice') {
       return
     }
 
@@ -185,6 +187,7 @@ class Layout extends Component {
                         name={product.name}
                         img={product.image}
                         price={product.price}
+                        onClick={this.props.handleClick(product)}
                       />
                     )
                   })}

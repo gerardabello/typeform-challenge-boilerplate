@@ -39,11 +39,12 @@ class App extends Component {
   }
 
   addProduct = product => {
-    this.setState(prev => {
-      return {
-        card: R.append(product, prev.card)
-      }
-    })
+    return () => {
+      console.log('added product', this.state.cart)
+      this.setState({
+        cart: R.append(product, this.state.cart)
+      })
+    }
   }
 
   onClickCart = () => {
@@ -86,7 +87,7 @@ class App extends Component {
       )
     }
 
-    const { form, checkoutOpen } = this.state
+    const { form, cart, checkoutOpen } = this.state
 
     let theme = form.theme
     theme.colors.buttonText = colorateButton(theme.colors.button).text
@@ -97,8 +98,8 @@ class App extends Component {
           <Header
             title='foo'
             currency='€'
-            amount={R.sum(R.map(R.prop('price'), this.state.cart))}
-            items={R.length(this.state.cart)}
+            amount={R.sum(R.map(R.prop('price'), cart))}
+            items={R.length(cart)}
             onClickCart={this.onClickCart}
           />
           <Layout fields={form.fields} handleClick={this.addProduct} />

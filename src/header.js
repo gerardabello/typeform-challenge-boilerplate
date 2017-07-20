@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import CartIcon from './cart-icon'
 import tinycolor from 'tinycolor2'
-import R from 'ramda'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,10 +14,12 @@ const Wrapper = styled.div`
   justify-content: space-between;
   z-index: 10;
 `
+
 const Title = styled.div`
   font-size: 16px;
   font-weight: bold;
 `
+
 const Amount = styled.div`
   color: ${p => p.theme.colors.question};
   font-size: 12px;
@@ -60,9 +61,9 @@ const Header = ({ title, currency, amount, items, onClickCart }) => {
     <Wrapper>
       <Title>{title}</Title>
       <Cart onClick={onClickCart}>
-        {R.isEmpty(items) && <Amount>{`${amount} ${currency}`}</Amount>}
+        <Amount>{`${amount} ${currency}`}</Amount>
         <CartWrapper>
-          {R.isEmpty(items) && <Items>{items}</Items>}
+          {items > 0 && <Items>{items}</Items>}
           <CartIcon />
         </CartWrapper>
       </Cart>
