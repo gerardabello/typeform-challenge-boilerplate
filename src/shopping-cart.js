@@ -4,11 +4,11 @@ import styled from 'styled-components'
 const Cart = styled.div``
 const Total = styled.div``
 
-const ShoppingCart = ({cart = [], onPurchase}) => {
+const ShoppingCart = ({ cart = [], onPurchase }) => {
   const price = cart.reduce((total, order) => total + order.price, 0)
   return (
     <Cart>
-      {cart.map((order) =>
+      {cart.map(order =>
         <div>
           {order.image}
           {order.title}

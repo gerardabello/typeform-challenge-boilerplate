@@ -3,13 +3,14 @@ import styled from 'styled-components'
 
 import CreditCard from './credit-card.js'
 import Modal from './mobile-modal.js'
+import ShoppingCart from './shopping-cart'
 
 const Wrapper = styled.div`
-  padding: 10px;
+  padding: 20px;
 `
 
 const Header = styled.div`
-  padding: 10px;
+  padding: 20px;
 `
 
 const Checkout = ({ open }) => {
@@ -19,6 +20,7 @@ const Checkout = ({ open }) => {
         <h2>Checkout page</h2>
       </Header>
       <Wrapper>
+        <ShoppingCart />
         <CreditCard />
       </Wrapper>
     </Modal>

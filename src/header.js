@@ -55,11 +55,11 @@ const Items = styled.div`
   top: 0;
 `
 
-const Header = ({ title, currency, amount, items }) => {
+const Header = ({ title, currency, amount, items, onClickCart }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Cart>
+      <Cart onClick={onClickCart}>
         {R.isEmpty(items) && <Amount>{`${amount} ${currency}`}</Amount>}
         <CartWrapper>
           {R.isEmpty(items) && <Items>{items}</Items>}

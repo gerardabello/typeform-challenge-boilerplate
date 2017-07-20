@@ -33,7 +33,8 @@ class App extends Component {
     super(props)
     this.state = {
       fetching: true,
-      cart: []
+      cart: [],
+      checkoutOpen: false
     }
   }
 
@@ -43,6 +44,15 @@ class App extends Component {
         card: R.append(product, prev.card)
       }
     })
+  }
+
+  onClickCart = () => {
+    console.log('cart clicked')
+    this.setState({ checkoutOpen: true })
+  }
+
+  onCloseCheckout = () => {
+    this.setState({ checkoutOpen: true })
   }
 
   async fetchForm () {
@@ -76,7 +86,7 @@ class App extends Component {
       )
     }
 
-    const { form } = this.state
+    const { form, checkoutOpen } = this.state
 
     let theme = form.theme
     theme.colors.buttonText = colorateButton(theme.colors.button).text
@@ -89,9 +99,13 @@ class App extends Component {
             currency='€'
             amount={R.sum(R.map(R.prop('price'), this.state.cart))}
             items={R.length(this.state.cart)}
+            onClickCart={this.onClickCart}
           />
           <Layout fields={form.fields} handleClick={this.addProduct} />
-          <Checkout open={false} />
+          <Checkout
+            open={checkoutOpen}
+            onCloseCheckout={this.onCloseCheckout}
+          />
         </Root>
       </ThemeProvider>
     )
