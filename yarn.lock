@@ -2821,6 +2821,10 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
+muicss@^0.9.18:
+  version "0.9.18"
+  resolved "https://registry.yarnpkg.com/muicss/-/muicss-0.9.18.tgz#3ad57a3daa3c6fe0e7b73deab8de6873bc8064a4"
+
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"

@@ -57,10 +57,10 @@ const Items = styled.div`
   top: 0;
 `
 
-const Header = ({ title, currency, amount, items, onClickCart }) => {
+const Header = ({ title, currency, amount, items, onClickCart, onClickTitle }) => {
   return (
     <Wrapper>
-      <Title>{title}</Title>
+      <Title onClick={onClickTitle}>{title}</Title>
       <Cart onClick={onClickCart}>
         <Amount>{`${amount} ${currency}`}</Amount>
         <CartWrapper>

@@ -31,6 +31,12 @@ class Checkout extends React.Component {
     this.onNext = this.onNext.bind(this)
   }
 
+  componentDidUpdate (prevProps) {
+    if (!this.props.open && prevProps.open) {
+      setTimeout(() => this.setState({pageIndex: 0}), 500)
+    }
+  }
+
   onNext () {
     this.setState({ pageIndex: R.inc(this.state.pageIndex) })
   }

@@ -109,6 +109,7 @@ class App extends Component {
             currency='€'
             amount={amount}
             items={R.length(cart)}
+            onClickTitle={() => this.setState({ checkoutOpen: false })}
             onClickCart={this.onClickCart}
           />
           <Layout fields={form.fields} handleClick={this.addProduct} />
