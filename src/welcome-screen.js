@@ -5,28 +5,30 @@ const Fitter = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
-const Picture = styled.div`
-  height: 100%;
-  width: 100%;
+const Picture = styled.img`
+  width: 70vw;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
 const Description = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  width: 90%;
+  font-size: 22px;
   text-align: center;
 `
 
 const WelcomeScreen = ({ title, img, description }) => {
   return (
     <Fitter>
-      <Picture><img src={img} /></Picture>
-      <Description>{description}</Description>
+      <Picture src={img} />
+      <Description dangerouslySetInnerHTML={{ __html: description }} />
     </Fitter>
   )
 }

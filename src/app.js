@@ -16,6 +16,7 @@ const Root = styled.section`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  color: ${p => p.theme.colors.answer};
   background: ${p => p.background};
   font-family: '${p => p.font}', sans-serif
 `

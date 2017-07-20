@@ -27,8 +27,8 @@ const Wrapper = styled.div`
 `
 
 const Image = styled.img`
-  width: 70vw;
-  height: 70vw;
+  width: 65vw;
+  height: 60vw;
   object-fit: cover;
   object-position: center;
   max-width: 450px;
