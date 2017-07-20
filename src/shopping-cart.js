@@ -1,21 +1,50 @@
 import React from 'react'
 import styled from 'styled-components'
+import R from 'ramda'
 
-const Cart = styled.div``
+const Cart = styled.div`
+
+`
 const Total = styled.div``
 
-const ShoppingCart = ({ cart = [], onPurchase }) => {
-  const price = cart.reduce((total, order) => total + order.price, 0)
+const Item = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+`
+
+const Image = styled.img`
+  width: 60px;
+  height: 60px;
+`
+
+const Amount = styled.div`
+  width: 30px;
+`
+const Price = styled.div``
+
+const Name = styled.div`
+  text-align: left;
+  flex: 1;
+  margin-left: 20px;
+`
+
+const ShoppingCart = ({ cart, price, onPurchase }) => {
+  const uniqCart = R.groupWith(R.equals, cart)
   return (
     <Cart>
-      {cart.map(order =>
-        <div>
-          {order.image}
-          {order.title}
-          {order.amount}
-          {order.price}
-        </div>
-      )}
+      {uniqCart.map((order, i) => {
+        const { name, price, image } = R.nth(0, order)
+        return (
+          <Item key={i}>
+            <Image src={image} alt='' />
+            <Name>{name}</Name>
+            <Amount>{R.length(order)}</Amount>
+            <Price>{price}€</Price>
+          </Item>
+        )
+      })}
       <Total>{price}</Total>
     </Cart>
   )

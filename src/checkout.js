@@ -13,14 +13,14 @@ const Header = styled.div`
   padding: 20px;
 `
 
-const Checkout = ({ open }) => {
+const Checkout = ({ open, cart }) => {
   return (
     <Modal open={open}>
       <Header>
         <h2>Checkout page</h2>
       </Header>
       <Wrapper>
-        <ShoppingCart />
+        <ShoppingCart cart={cart} />
         <CreditCard />
       </Wrapper>
     </Modal>

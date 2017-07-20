@@ -93,19 +93,22 @@ class App extends Component {
     let theme = form.theme
     theme.colors.buttonText = colorateButton(theme.colors.button).text
 
+    const amount = R.sum(R.map(R.prop('price'), cart))
+
     return (
       <ThemeProvider theme={theme}>
         <Root background={form.theme.colors.background} font={form.theme.font}>
           <Header
-            title='foo'
+            title={form.title}
             currency='€'
-            amount={R.sum(R.map(R.prop('price'), cart))}
+            amount={amount}
             items={R.length(cart)}
             onClickCart={this.onClickCart}
           />
           <Layout fields={form.fields} handleClick={this.addProduct} />
           <Checkout
             open={checkoutOpen}
+            cart={cart}
             onCloseCheckout={this.onCloseCheckout}
           />
         </Root>
