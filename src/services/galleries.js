@@ -11,7 +11,8 @@ export function getNormalizedForm (form) {
 }
 
 const normalizers = {
-  picture_choice: normalizePictureChoice
+  picture_choice: normalizePictureChoice,
+  statement: normalizeStatement
 }
 
 function normalizeBlock (form, blockID) {
@@ -24,6 +25,12 @@ function normalizeBlock (form, blockID) {
   }
 
   return normalizer(form, blockID)
+}
+
+function normalizeStatement (form, blockID) {
+  const block = form.fields.find(block => block.id === blockID)
+
+  return block
 }
 
 function normalizePictureChoice (form, blockID) {

@@ -72,7 +72,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Root background={form.theme.colors.background} font={form.theme.font}>
           <Header title='foo' currency='€' amount='12.12' items='1' />
-          <Layout galleries={form.fields} />
+          <Layout fields={form.fields} />
         </Root>
       </ThemeProvider>
     )

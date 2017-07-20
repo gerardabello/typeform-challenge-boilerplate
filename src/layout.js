@@ -4,6 +4,7 @@ import R from 'ramda'
 import styled from 'styled-components'
 
 import Gallery from './gallery'
+import Statement from './statement'
 
 import Product from './product'
 
@@ -37,8 +38,8 @@ class Layout extends Component {
     const fill = num => len => R.times(R.always(num), len)
 
     this.state = {
-      galleryIndex: 0,
-      itemIndex: fill(0)(R.length(this.props.galleries)),
+      fieldIndex: 0,
+      itemIndex: fill(0)(R.length(this.props.fields)),
       verticalDelta: 0,
       horitzontalDelta: 0
     }
@@ -78,17 +79,21 @@ class Layout extends Component {
   }
 
   goRight () {
-    const galleries = R.prop('galleries', this.props)
-    const galleryIndex = R.prop('galleryIndex', this.state)
-    const gallery = R.nth(galleryIndex, galleries)
-    const productCount = R.length(R.prop('products', gallery))
-    const currentItemIndex = R.nth(galleryIndex, this.state.itemIndex)
+    const fields = R.prop('fields', this.props)
+    const fieldIndex = R.prop('fieldIndex', this.state)
+    const field = R.nth(fieldIndex, fields)
+    if (field.type != 'picture_choice') {
+      return
+    }
+
+    const productCount = R.length(R.prop('products', field))
+    const currentItemIndex = R.nth(fieldIndex, this.state.itemIndex)
 
     const nextIndex = R.inc(currentItemIndex)
     const index = R.min(nextIndex, productCount - 1)
 
     const { itemIndex } = this.state
-    itemIndex[this.state.galleryIndex] = index
+    itemIndex[this.state.fieldIndex] = index
 
     this.setState({
       itemIndex,
@@ -99,14 +104,11 @@ class Layout extends Component {
   goLeft () {
     const { itemIndex } = this.state
 
-    const currentItemIndex = R.nth(
-      this.state.galleryIndex,
-      this.state.itemIndex
-    )
+    const currentItemIndex = R.nth(this.state.fieldIndex, this.state.itemIndex)
     const nextIndex = R.dec(currentItemIndex)
 
     const index = R.max(nextIndex, 0)
-    itemIndex[this.state.galleryIndex] = index
+    itemIndex[this.state.fieldIndex] = index
 
     this.setState({
       itemIndex,
@@ -116,32 +118,34 @@ class Layout extends Component {
 
   goUp () {
     const MIN_ITEM_INDEX = 0
-    const nextIndex = R.subtract(this.state.galleryIndex, 1)
+    const nextIndex = R.subtract(this.state.fieldIndex, 1)
     const index = R.max(nextIndex, MIN_ITEM_INDEX)
 
     this.setState({
       verticalDelta: 0,
-      galleryIndex: index
+      horitzontalDelta: 0,
+      fieldIndex: index
     })
   }
 
   goDown () {
-    const galleries = R.prop('galleries', this.props)
-    const galleriesCount = R.length(galleries)
-    const MAX_ITEM_INDEX = galleriesCount - 1
+    const fields = R.prop('fields', this.props)
+    const fieldsCount = R.length(fields)
+    const MAX_ITEM_INDEX = fieldsCount - 1
 
-    const nextIndex = R.inc(this.state.galleryIndex)
+    const nextIndex = R.inc(this.state.fieldIndex)
     const index = R.min(nextIndex, MAX_ITEM_INDEX)
 
     this.setState({
       verticalDelta: 0,
-      galleryIndex: index
+      horitzontalDelta: 0,
+      fieldIndex: index
     })
   }
 
   render () {
-    const { galleries } = this.props
-    const { galleryIndex, horitzontalDelta } = this.state
+    const { fields } = this.props
+    const { fieldIndex, horitzontalDelta } = this.state
 
     return (
       <Swiper
@@ -161,26 +165,36 @@ class Layout extends Component {
           console.log('Click!')
         }}
       >
-        <GalleryWrapper index={galleryIndex} delta={this.state.verticalDelta}>
-          {galleries.map((gallery, i) => {
-            return (
-              <Gallery
-                key={i}
-                selectedIndex={this.state.itemIndex[i]}
-                title={gallery.title}
-                delta={horitzontalDelta}
-                max={gallery.products.length - 1}
-              >
-                {gallery.products.map((product, i) => (
-                  <Product
-                    key={i}
-                    name={product.name}
-                    img={product.image}
-                    price={product.price}
-                  />
-                ))}
-              </Gallery>
-            )
+        <GalleryWrapper index={fieldIndex} delta={this.state.verticalDelta}>
+          {fields.map((field, i) => {
+            if (field.type === 'picture_choice') {
+              return (
+                <Gallery
+                  key={i}
+                  selectedIndex={this.state.itemIndex[i]}
+                  title={field.title}
+                  delta={horitzontalDelta}
+                  max={field.products.length - 1}
+                >
+                  {field.products.map((product, i) =>
+                    <Product
+                      key={i}
+                      name={product.name}
+                      img={product.image}
+                      price={product.price}
+                    />
+                  )}
+                </Gallery>
+              )
+            } else if (field.type === 'statement') {
+              return (
+                <Statement
+                  key={i}
+                  title={field.title}
+                  description={field.properties.description}
+                />
+              )
+            }
           })}
         </GalleryWrapper>
       </Swiper>
