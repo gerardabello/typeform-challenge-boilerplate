@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import R from 'ramda'
 
-import FlatCreditCard from './flat-credit-card.js'
+import Payment from './payment'
 import Modal from './mobile-modal.js'
 import ShoppingCart from './shopping-cart'
 import Shipment from './shipment'
@@ -42,20 +42,18 @@ class Checkout extends React.Component {
   }
 
   render () {
-    const { open, cart } = this.props
+    const { open, cart, onRemoveCartItem } = this.props
     return (
       <Modal open={open}>
         <Wrapper index={this.state.pageIndex}>
           <Section>
-            <ShoppingCart onNext={this.onNext} cart={cart} />
+            <ShoppingCart onNext={this.onNext} cart={cart} onRemove={onRemoveCartItem} />
           </Section>
           <Section>
             <Shipment onNext={this.onNext} />
           </Section>
           <Section>
-            <FlatCreditCard
-              onChange={cardDetails => console.log(cardDetails)}
-            />
+            <Payment onChange={(a) => console.log(a)} />
           </Section>
         </Wrapper>
       </Modal>

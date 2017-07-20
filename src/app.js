@@ -85,6 +85,12 @@ class App extends Component {
     this.fetchForm()
   }
 
+  removeCartItem (index) {
+    this.setState({
+      cart: this.state.cart.filter((_, i) => i !== index)
+    })
+  }
+
   render () {
     if (this.state.fetching) {
       return (
@@ -117,6 +123,7 @@ class App extends Component {
             open={checkoutOpen}
             cart={cart}
             onCloseCheckout={this.onCloseCheckout}
+            onRemoveCartItem={(index) => this.removeCartItem(index)}
           />
         </Root>
       </ThemeProvider>

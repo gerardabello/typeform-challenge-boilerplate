@@ -16,7 +16,9 @@ const Title = styled.h2`
     padding-bottom: 20px;
       margin-bottom: 12px;
 `
-const Total = styled.div``
+const Total = styled.div`
+  text-align: right;
+`
 
 const Item = styled.div`
   display: flex;
@@ -31,15 +33,10 @@ const Image = styled.img`
   width: 60px;
   height: 60px;
 `
-
-const Amount = styled.div`
-  width: 30px;
-`
 const Price = styled.div``
 
 const Name = styled.div`
   text-align: left;
-  flex: 1;
   margin-left: 20px;
 `
 
@@ -55,24 +52,33 @@ const Button = styled.button`
   color: ${p => p.theme.colors.buttonText};
   margin-top: 12px;
 `
+const Remove = styled.div`
+  flex: 1;
+  padding-left: 2em;
+  font-size: 0.8em;
+`
 
-const ShoppingCart = ({ cart, price, onNext }) => {
+const ShoppingCart = ({ cart, onNext, onRemove }) => {
   const uniqCart = R.groupWith(R.equals, cart)
+  const total = cart.reduce((t, {price}) => t + price, 0)
   return (
     <Cart>
       <Title>Shopping Cart</Title>
-      {uniqCart.map((order, i) => {
-        const { name, price, image } = R.nth(0, order)
-        return (
-          <Item key={i}>
+      {uniqCart.reduce((acc, order, i) => {
+        const items = order.map(({image, name, order, price}, j) =>
+          <Item key={`${i}${j}`}>
             <Image src={image} alt='' />
             <Name>{name}</Name>
-            <Amount>{R.length(order)}</Amount>
+            <Remove onClick={() => onRemove(i)}>remove</Remove>
             <Price>{price}€</Price>
           </Item>
         )
-      })}
-      <Total>{price}</Total>
+        return acc.concat(items)
+      }, [])}
+      <Item>
+        <span>total</span>
+        <Total>{total} €</Total>
+      </Item>
       <Button onClick={onNext}>Proceed to payment</Button>
     </Cart>
   )
