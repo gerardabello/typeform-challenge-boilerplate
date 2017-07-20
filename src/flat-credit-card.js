@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {
   CardBox,
-  Back,
   Flip,
   CardNumber,
   Label,
@@ -93,7 +92,7 @@ class CreditCard extends Component {
             <ExpirationDate>
               <Label>Expires</Label>
               <CardInput
-                style={{width: '30px'}}
+                style={{width: '6vmin'}}
                 placeholder='MM'
                 isNumeric
                 value={expirationMonth}
@@ -102,7 +101,7 @@ class CreditCard extends Component {
               />
               <span>/</span>
               <CardInput
-                style={{width: '30px'}}
+                style={{width: '6vmin'}}
                 placeholder='YY'
                 isNumeric
                 value={expirationYear}
