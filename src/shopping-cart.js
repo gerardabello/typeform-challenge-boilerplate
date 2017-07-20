@@ -30,7 +30,14 @@ const Name = styled.div`
   margin-left: 20px;
 `
 
-const ShoppingCart = ({ cart, price, onPurchase }) => {
+const Button = styled.button`
+  outline: none;
+  border: none;
+  background: ${p => p.theme.colors.button}
+  color: ${p => p.theme.colors.buttonText}
+`
+
+const ShoppingCart = ({ cart, price, onNext }) => {
   const uniqCart = R.groupWith(R.equals, cart)
   return (
     <Cart>
@@ -46,6 +53,7 @@ const ShoppingCart = ({ cart, price, onPurchase }) => {
         )
       })}
       <Total>{price}</Total>
+      <Button onClick={onNext}>Proceed to payment</Button>
     </Cart>
   )
 }
