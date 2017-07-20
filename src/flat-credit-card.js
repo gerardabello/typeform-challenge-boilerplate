@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 import React, { Component } from 'react'
-=======
-import React, {Component} from 'react'
 import {findDOMNode} from 'react-dom'
->>>>>>> fix card
+
 import {
   CardBox,
   Flip,
@@ -71,12 +68,7 @@ class CreditCard extends Component {
                 placeholder='Type card number'
                 value={number}
                 isNumeric
-<<<<<<< HEAD
-                onChange={value => this.setValue('number', value)}
-                onFocus={() => this.showFront()}
-=======
                 onChange={(value) => this.setValue('number', value)}
->>>>>>> fix card
               />
             </CardNumber>
             <CardHolder>
@@ -84,12 +76,7 @@ class CreditCard extends Component {
               <CardInput
                 placeholder='Type your name'
                 value={holder}
-<<<<<<< HEAD
-                onChange={value => this.setValue('holder', value)}
-                onFocus={() => this.showFront()}
-=======
                 onChange={(value) => this.setValue('holder', value)}
->>>>>>> fix card
               />
             </CardHolder>
             <ExpirationDate>
@@ -99,12 +86,7 @@ class CreditCard extends Component {
                 placeholder='MM'
                 isNumeric
                 value={expirationMonth}
-<<<<<<< HEAD
-                onChange={value => this.setValue('expirationMonth', value)}
-                onFocus={() => this.showFront()}
-=======
                 onChange={(value) => this.setValue('expirationMonth', value)}
->>>>>>> fix card
               />
               <DateDivider>/</DateDivider>
               <CardInput
@@ -112,34 +94,20 @@ class CreditCard extends Component {
                 placeholder='YY'
                 isNumeric
                 value={expirationYear}
-<<<<<<< HEAD
-                onChange={value => this.setValue('expirationYear', value)}
-                onFocus={() => this.showFront()}
-=======
                 onChange={(value) => this.setValue('expirationYear', value)}
->>>>>>> fix card
               />
             </ExpirationDate>
           </FrontCard>
           <BackCard>
             <Ccv>
               <CardInput
-<<<<<<< HEAD
-                style={{ textAlign: 'right' }}
-=======
                 ref='ccv'
                 style={{textAlign: 'right'}}
->>>>>>> fix card
                 placeholder='CCV'
                 placeholderColor='black'
                 isNumeric
                 value={ccv}
-<<<<<<< HEAD
-                onChange={value => this.setValue('ccv', value)}
-                onFocus={() => this.showBack()}
-=======
                 onChange={(value) => this.setValue('ccv', value)}
->>>>>>> fix card
               />
             </Ccv>
           </BackCard>
