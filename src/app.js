@@ -116,9 +116,5 @@ class App extends Component {
     )
   }
 }
-// <WelcomeScreen
-//   description={this.state.welcomeScreen.title}
-//   img={this.state.welcomeScreen.attachment.href}
-// />
 
 export default App

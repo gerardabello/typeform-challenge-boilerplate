@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import Gallery from './gallery'
 import Statement from './statement'
+import WelcomeScreen from './welcome-screen'
 
 import Product from './product'
 
@@ -168,6 +169,7 @@ class Layout extends Component {
         }}
       >
         <GalleryWrapper index={fieldIndex} delta={this.state.verticalDelta}>
+
           {fields.map((field, i) => {
             if (field.type === 'picture_choice') {
               return (
@@ -201,6 +203,14 @@ class Layout extends Component {
                   key={i}
                   title={field.title}
                   description={field.properties.description}
+                />
+              )
+            } else if (field.type === 'welcome_screen') {
+              return (
+                <WelcomeScreen
+                  key={i}
+                  description={field.title}
+                  img={field.attachment.href}
                 />
               )
             }

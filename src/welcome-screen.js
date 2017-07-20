@@ -5,7 +5,6 @@ const Fitter = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
-  box-shadow: inset 0 0 0 1px black;
 `
 
 const Picture = styled.div`

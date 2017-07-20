@@ -5,6 +5,11 @@ export function getNormalizedForm (form) {
     .map(block => normalizeBlock(form, block.id))
     .filter(block => !!block)
 
+  if (form.welcome_screens) {
+    nform.fields.unshift(form.welcome_screens[0])
+    nform.fields[0].type = 'welcome_screen'
+  }
+
   return nform
 }
 
