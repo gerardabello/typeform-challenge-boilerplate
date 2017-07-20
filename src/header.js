@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import CartIcon from './cart-icon'
 import tinycolor from 'tinycolor2'
 
@@ -42,6 +42,12 @@ const CartWrapper = styled.div`
   justify-content: center;
 `
 
+const animationName = keyframes`
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0; transform: scale(2);}
+  100% { opacity: 1; transform: scale(1); }
+`
+
 const Items = styled.div`
   border-radius: 50%;
   width: 16px;
@@ -55,21 +61,43 @@ const Items = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  animation: ${p => (p.animate ? animationName : '')} 0.3s 0s both;
 `
 
-const Header = ({ title, currency, amount, items, onClickCart, onClickTitle }) => {
-  return (
-    <Wrapper>
-      <Title onClick={onClickTitle}>{title}</Title>
-      <Cart onClick={onClickCart}>
-        <Amount>{`${amount} ${currency}`}</Amount>
-        <CartWrapper>
-          {items > 0 && <Items>{items}</Items>}
-          <CartIcon />
-        </CartWrapper>
-      </Cart>
-    </Wrapper>
-  )
+class Header extends React.Component {
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.amount !== this.props.amount) {
+      console.log('animate')
+      this.setState({ animate: true })
+    }
+
+    setTimeout(() => {
+      console.log('stop animate')
+      this.setState({ animate: false })
+    }, 400)
+  }
+  render () {
+    const {
+      title,
+      currency,
+      amount,
+      items,
+      onClickCart,
+      onClickTitle
+    } = this.props
+    return (
+      <Wrapper>
+        <Title onClick={onClickTitle}>{title}</Title>
+        <Cart onClick={onClickCart}>
+          <Amount>{`${amount} ${currency}`}</Amount>
+          <CartWrapper>
+            {items > 0 && <Items animate={this.state.animate}>{items}</Items>}
+            <CartIcon />
+          </CartWrapper>
+        </Cart>
+      </Wrapper>
+    )
+  }
 }
 
 export default Header
