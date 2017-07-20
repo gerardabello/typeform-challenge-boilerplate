@@ -17,7 +17,7 @@ const Slider = styled.div`
   width: calc(100vw * ${props => props.children.length});
   transform: translateX(
     calc(
-      ${props => -80 * props.selectedIndex}vw - ${props => props.delta}px + 10vw
+      ${props => -70 * props.selectedIndex}vw - ${props => props.delta}px + 15vw
     )
   );
   transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;

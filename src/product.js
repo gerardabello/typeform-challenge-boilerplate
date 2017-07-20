@@ -7,8 +7,8 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 80vw;
-  width: 80vw;
+  min-width: 70vw;
+  width: 70vw;
   opacity: ${props => (props.isActive ? 1 : 0.75)};
   transition: all 300ms ease;
   transform: scale(${props => (props.isActive ? 1.03 : 0.9)});
@@ -20,7 +20,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px ${props => (props.isActive ? '10px' : '30px')} 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px ${props =>
+    props.isActive
+      ? '10px'
+      : '30px'} 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   overflow: hidden;
   padding-bottom: 30px;
