@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import tinycolor from 'tinycolor2'
 
 export const CardBox = styled.div`
 perspective: 1000;
@@ -16,6 +17,9 @@ transition: 0.6s;
 transform-style: preserve-3d;
 position: relative;
 transform: rotateY(${props => props.turn ? '180deg' : ''});
+`
+export const DateDivider = styled.span`
+  color: ${(p) => tinycolor(p.theme.colors.question).darken().toString()}
 `
 
 export const Logo = styled.div`
@@ -46,6 +50,7 @@ font-size: 38px; */}
 `
 
 export const Label = styled.label`
+color: ${(p) => p.theme.colors.question};
 font-size: 2vmin;
 letter-spacing: 0.2vmin;
 text-shadow: none;

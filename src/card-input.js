@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import tinycolor from 'tinycolor2'
 
 const Input = styled.input`
   font-family: inherit;
@@ -12,7 +13,7 @@ const Input = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: ${(props) => props.placeholderColor};
+    color: ${(p) => tinycolor(p.theme.colors.answer).lighten().toString()};
     opacity: 0.6;
   }
 `

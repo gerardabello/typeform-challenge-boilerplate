@@ -6,6 +6,7 @@ import {
   Label,
   CardHolder,
   ExpirationDate,
+  DateDivider,
   Ccv
 } from './credit-card.styles'
 import FrontCard from './front-card'
@@ -99,7 +100,7 @@ class CreditCard extends Component {
                 onChange={(value) => this.setValue('expirationMonth', value)}
                 onFocus={() => this.showFront()}
               />
-              <span>/</span>
+              <DateDivider>/</DateDivider>
               <CardInput
                 style={{width: '6vmin'}}
                 placeholder='YY'
