@@ -65,6 +65,10 @@ const Items = styled.div`
 `
 
 class Header extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { animate: false }
+  }
   componentWillReceiveProps (nextProps) {
     if (nextProps.amount !== this.props.amount) {
       console.log('animate')
