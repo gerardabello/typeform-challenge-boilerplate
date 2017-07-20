@@ -48,7 +48,7 @@ const bounceAnimation = keyframes`
 const Arrow = styled.div`
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: calc(50% - 20px);
   animation: ${bounceAnimation} 3s infinite;
 `
 
