@@ -158,11 +158,9 @@ class Layout extends Component {
         onSwipedRight={this.goLeft}
         onSwipedLeft={this.goRight}
         flickThreshold={0.8}
+        trackMouse
         style={{
           overflow: 'hidden'
-        }}
-        onTap={() => {
-          console.log('Click!')
         }}
       >
         <GalleryWrapper index={fieldIndex} delta={this.state.verticalDelta}>
@@ -176,14 +174,14 @@ class Layout extends Component {
                   delta={horitzontalDelta}
                   max={field.products.length - 1}
                 >
-                  {field.products.map((product, i) =>
+                  {field.products.map((product, i) => (
                     <Product
                       key={i}
                       name={product.name}
                       img={product.image}
                       price={product.price}
                     />
-                  )}
+                  ))}
                 </Gallery>
               )
             } else if (field.type === 'statement') {

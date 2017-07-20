@@ -11,18 +11,23 @@ const Root = styled.div`
   width: 80vw;
 `
 
+const Image = styled.img`
+  border-radius: 5px;
+  box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.28);
+  width: 70vw;
+  height: 70vw;
+  object-fit: cover;
+  object-position: center;
+  max-width: 450px;
+  max-height: 450px;
+  user-select: none;
+  user-drag: none;
+`
+
 const Picture = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    border-radius: 5px;
-    box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.28);
-    width: 70vw;
-    height: 70vw;
-    object-fit: cover;
-    object-position: center;
-  }
 `
 
 const Description = styled.div`
@@ -60,10 +65,12 @@ class Product extends Component {
     const { img, price, name } = this.props
     return (
       <Root>
-        <Picture><img src={img} /></Picture>
+        <Picture><Image src={img} /></Picture>
         <Description>{name}</Description>
         <Price>{price}e</Price>
-        <Button>Add to cart</Button>
+        <Button onClick={this.props.onClick}>
+          Add to cart
+        </Button>
       </Root>
     )
   }

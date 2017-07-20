@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import CartIcon from './cart-icon'
 import tinycolor from 'tinycolor2'
+import R from 'ramda'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -59,9 +60,9 @@ const Header = ({ title, currency, amount, items }) => {
     <Wrapper>
       <Title>{title}</Title>
       <Cart>
-        <Amount>{`${amount} ${currency}`}</Amount>
+        {R.isEmpty(items) && <Amount>{`${amount} ${currency}`}</Amount>}
         <CartWrapper>
-          <Items>{items}</Items>
+          {R.isEmpty(items) && <Items>{items}</Items>}
           <CartIcon />
         </CartWrapper>
       </Cart>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import Layout from './layout'
+import R from 'ramda'
 
 import Loader from 'halogen/SyncLoader'
 import Header from './header'
@@ -29,7 +30,18 @@ const LoaderWrapper = styled.div`
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = { fetching: true }
+    this.state = {
+      fetching: true,
+      cart: []
+    }
+  }
+
+  addProduct = product => {
+    this.setState(prev => {
+      return {
+        card: R.append(product, prev.card)
+      }
+    })
   }
 
   async fetchForm () {
@@ -71,8 +83,13 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Root background={form.theme.colors.background} font={form.theme.font}>
-          <Header title='foo' currency='€' amount='12.12' items='1' />
-          <Layout fields={form.fields} />
+          <Header
+            title='foo'
+            currency='€'
+            amount={R.sum(R.map(R.prop('price'), this.state.cart))}
+            items={R.length(this.state.cart)}
+          />
+          <Layout fields={form.fields} handleClick={this.addProduct} />
         </Root>
       </ThemeProvider>
     )
