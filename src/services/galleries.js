@@ -1,26 +1,49 @@
-export function getGalleries (form) {
-  const blocks = form.fields.filter(block => block.properties.choices != null)
-  return blocks.map(block => {
-    return {
-      title: block.title,
-      products: getProductsForBlock(form, block.id)
-    }
-  })
+export function getNormalizedForm (form) {
+  let nform = { title: form.title, theme: form.theme }
+
+  nform.fields = form.fields
+    .map(block => {
+      return normalizeBlock(form, block.id)
+    })
+    .filter(block => !!block)
+
+  return nform
 }
 
-function getProductsForBlock (form, blockID) {
+const normalizers = {
+  picture_choice: normalizePictureChoice
+}
+
+function normalizeBlock (form, blockID) {
   const block = form.fields.find(block => block.id === blockID)
 
-  return block.properties.choices.map(choice => {
+  const normalizer = normalizers[block.type]
+
+  if (typeof normalizer !== 'function') {
+    return null
+  }
+
+  return normalizer(form, blockID)
+}
+
+function normalizePictureChoice (form, blockID) {
+  const block = form.fields.find(block => block.id === blockID)
+
+  const products = block.properties.choices.map(choice => {
     return {
       name: choice.label,
       image: choice.attachment.href,
-      price: getPriceForProduct(form, block.id, choice.id)
+      price: getPriceForChoice(form, block.id, choice.id)
     }
   })
+
+  return {
+    type: 'picture_choice',
+    products
+  }
 }
 
-function getPriceForProduct (form, blockID, choiceID) {
+function getPriceForChoice (form, blockID, choiceID) {
   let block = form.fields.find(block => block.id === blockID)
 
   if (!block.properties.choices) {

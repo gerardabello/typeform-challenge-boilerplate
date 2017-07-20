@@ -6,7 +6,7 @@ import Loader from 'halogen/SyncLoader'
 import Header from './header'
 
 import { getForm } from './services/form'
-import { getGalleries } from './services/galleries'
+import { getNormalizedForm } from './services/galleries'
 
 import colorateButton from './services/colors'
 
@@ -41,8 +41,7 @@ class App extends Component {
         : undefined
 
       this.setState({
-        galleries: getGalleries(form),
-        form,
+        form: getNormalizedForm(form),
         welcomeScreen,
         fetching: false
       })
@@ -64,7 +63,7 @@ class App extends Component {
       )
     }
 
-    const { form, galleries } = this.state
+    const { form } = this.state
 
     let theme = form.theme
     theme.colors.buttonText = colorateButton(theme.colors.button).text
@@ -73,7 +72,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Root background={form.theme.colors.background} font={form.theme.font}>
           <Header title='foo' currency='€' amount='12.12' items='1' />
-          <Layout galleries={galleries} />
+          <Layout galleries={form.fields} />
         </Root>
       </ThemeProvider>
     )
