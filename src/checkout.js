@@ -42,7 +42,7 @@ class Checkout extends React.Component {
             <ShoppingCart onNext={this.onNext} cart={cart} />
           </Section>
           <Section>
-            <FlatCreditCard />
+            <FlatCreditCard onChange={(cardDetails) => console.log(cardDetails)} />
           </Section>
         </Wrapper>
       </Modal>
