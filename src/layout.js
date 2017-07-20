@@ -99,7 +99,8 @@ class Layout extends Component {
 
     this.setState({
       itemIndex,
-      horitzontalDelta: 0
+      horitzontalDelta: 0,
+      verticalDelta: 0
     })
   }
 
@@ -114,7 +115,8 @@ class Layout extends Component {
 
     this.setState({
       itemIndex,
-      horitzontalDelta: 0
+      horitzontalDelta: 0,
+      verticalDelta: 0
     })
   }
 

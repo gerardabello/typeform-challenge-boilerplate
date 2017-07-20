@@ -83,7 +83,7 @@ class Product extends Component {
         <Wrapper>
           <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
           <Description>{name}</Description>
-          <Price>{price}€</Price>
+          <Price>{Math.floor(price * 100) / 100}€</Price>
           <Button onClick={this.props.onClick}>
             Add to cart
           </Button>
