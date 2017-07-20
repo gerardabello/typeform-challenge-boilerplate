@@ -10,10 +10,11 @@ const Cart = styled.div`
 const Title = styled.h2`
   font-size: 20px;
   color: ${p => p.theme.colors.question};
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 20px;
-      margin-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+  margin-bottom: 12px;
 `
+
 const Total = styled.div`
   text-align: right;
 `

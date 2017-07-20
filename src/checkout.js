@@ -26,14 +26,14 @@ class Checkout extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { pageIndex: 0 }
+    this.state = { pageIndex: 1 }
 
     this.onNext = this.onNext.bind(this)
   }
 
   componentDidUpdate (prevProps) {
     if (!this.props.open && prevProps.open) {
-      setTimeout(() => this.setState({pageIndex: 0}), 500)
+      setTimeout(() => this.setState({ pageIndex: 0 }), 500)
     }
   }
 
@@ -47,13 +47,17 @@ class Checkout extends React.Component {
       <Modal open={open}>
         <Wrapper index={this.state.pageIndex}>
           <Section>
-            <ShoppingCart onNext={this.onNext} cart={cart} onRemove={onRemoveCartItem} />
+            <ShoppingCart
+              onNext={this.onNext}
+              cart={cart}
+              onRemove={onRemoveCartItem}
+            />
           </Section>
           <Section>
             <Shipment onNext={this.onNext} />
           </Section>
           <Section>
-            <Payment onChange={(a) => console.log(a)} />
+            <Payment onChange={console.log} />
           </Section>
         </Wrapper>
       </Modal>

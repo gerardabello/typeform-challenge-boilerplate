@@ -16,7 +16,7 @@ const Button = styled.button`
 
 const Half = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `
 const Wrap = styled.div`
   width: 100%;
@@ -38,14 +38,14 @@ const Title = styled.h3`
 `
 
 const Steps = styled.span`
-color: ${p => p.theme.colors.question};
+  color: ${p => p.theme.colors.question};
 `
 
 const TitleWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `
 
 class Shipment extends Component {
@@ -54,7 +54,7 @@ class Shipment extends Component {
       <Root>
         <TitleWrapper>
           <Title>Shipment address</Title>
-          <Steps>steps <strong>1th</strong> of 3</Steps>
+          <Steps>steps <strong>1th</strong> of 2</Steps>
         </TitleWrapper>
         <Wrap>
           <Imput label='Name' floatingLabel />

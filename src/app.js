@@ -34,8 +34,57 @@ class App extends Component {
     super(props)
     this.state = {
       fetching: true,
-      cart: [],
-      checkoutOpen: false
+      cart: [
+        {
+          id: 'hLTMyTXhDUxB',
+          name: 'Salad',
+          image: 'https://images.typeform.com/images/TzXeiNwgNjFq',
+          price: 4.5
+        },
+        {
+          id: 'hLTMyTXhDUxB',
+          name: 'Salad',
+          image: 'https://images.typeform.com/images/TzXeiNwgNjFq',
+          price: 4.5
+        },
+        {
+          id: 'BbCfdrPNp62n',
+          name: 'Mozzarella salad',
+          image: 'https://images.typeform.com/images/asW2t9vRcBPZ',
+          price: 4.5
+        },
+        {
+          id: 'BbCfdrPNp62n',
+          name: 'Mozzarella salad',
+          image: 'https://images.typeform.com/images/asW2t9vRcBPZ',
+          price: 4.5
+        },
+        {
+          id: 'FoTKVpH5k06l',
+          name: 'Vegetables soup',
+          image: 'https://images.typeform.com/images/sAXgN4NC4Zbd',
+          price: 4.5
+        },
+        {
+          id: 'FoTKVpH5k06l',
+          name: 'Vegetables soup',
+          image: 'https://images.typeform.com/images/sAXgN4NC4Zbd',
+          price: 4.5
+        },
+        {
+          id: 'f2i93bvQrHf7',
+          name: 'Ham pizza',
+          image: 'https://images.typeform.com/images/95Eyaf9hQBFF',
+          price: 4
+        },
+        {
+          id: 'f2i93bvQrHf7',
+          name: 'Ham pizza',
+          image: 'https://images.typeform.com/images/95Eyaf9hQBFF',
+          price: 4
+        }
+      ],
+      checkoutOpen: true
     }
 
     this.addProduct = this.addProduct.bind(this)
@@ -67,8 +116,7 @@ class App extends Component {
         : undefined
 
       injectGlobal`
-        @import url('https://fonts.googleapis.com/css?family=${form.theme
-          .font}');
+        @import url('https://fonts.googleapis.com/css?family=${form.theme.font}');
       `
 
       this.setState({
@@ -92,6 +140,8 @@ class App extends Component {
   }
 
   render () {
+    console.log(JSON.stringify(this.state.cart))
+
     if (this.state.fetching) {
       return (
         <LoaderWrapper>
@@ -123,7 +173,7 @@ class App extends Component {
             open={checkoutOpen}
             cart={cart}
             onCloseCheckout={this.onCloseCheckout}
-            onRemoveCartItem={(index) => this.removeCartItem(index)}
+            onRemoveCartItem={index => this.removeCartItem(index)}
           />
         </Root>
       </ThemeProvider>
