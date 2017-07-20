@@ -22,33 +22,32 @@ const GalleryWrapper = styled.div`
   transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) all;
 `
 
-const bounceAnimation = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(-30px);
-    -ms-transform: translateY(-30px);
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  60% {
-    -moz-transform: translateY(-15px);
-    -ms-transform: translateY(-15px);
-    -webkit-transform: translateY(-15px);
-    transform: translateY(-15px);
-  }
-`
+// const bounceAnimation = keyframes`
+//   0%, 20%, 50%, 80%, 100% {
+//     -moz-transform: translateY(0);
+//     -ms-transform: translateY(0);
+//     -webkit-transform: translateY(0);
+//     transform: translateY(0);
+//   }
+//   40% {
+//     -moz-transform: translateY(-30px);
+//     -ms-transform: translateY(-30px);
+//     -webkit-transform: translateY(-30px);
+//     transform: translateY(-30px);
+//   }
+//   60% {
+//     -moz-transform: translateY(-15px);
+//     -ms-transform: translateY(-15px);
+//     -webkit-transform: translateY(-15px);
+//     transform: translateY(-15px);
+//   }
+// `
 
 const Arrow = styled.div`
   ${(p) => p.hide ? 'display: none;' : ''}
   position: fixed;
   bottom: 10px;
   left: calc(50% - 20px);
-  animation: ${bounceAnimation} 3s infinite;
 `
 
 class Layout extends Component {
