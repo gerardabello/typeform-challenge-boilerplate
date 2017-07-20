@@ -2,9 +2,7 @@ export function getNormalizedForm (form) {
   let nform = { title: form.title, theme: form.theme }
 
   nform.fields = form.fields
-    .map(block => {
-      return normalizeBlock(form, block.id)
-    })
+    .map(block => normalizeBlock(form, block.id))
     .filter(block => !!block)
 
   return nform
@@ -15,9 +13,12 @@ const normalizers = {
   statement: normalizeStatement
 }
 
-function normalizeBlock (form, blockID) {
-  const block = form.fields.find(block => block.id === blockID)
+const getBlockById = (form, blockId) => {
+  return form.fields.find(block => block.id === blockId)
+}
 
+function normalizeBlock (form, blockID) {
+  const block = getBlockById(form, blockID)
   const normalizer = normalizers[block.type]
 
   if (typeof normalizer !== 'function') {
@@ -28,16 +29,15 @@ function normalizeBlock (form, blockID) {
 }
 
 function normalizeStatement (form, blockID) {
-  const block = form.fields.find(block => block.id === blockID)
-
-  return block
+  return getBlockById(form, blockID)
 }
 
 function normalizePictureChoice (form, blockID) {
-  const block = form.fields.find(block => block.id === blockID)
+  const block = getBlockById(form, blockID)
 
   const products = block.properties.choices.map(choice => {
     return {
+      id: choice.id,
       name: choice.label,
       image: choice.attachment.href,
       price: getPriceForChoice(form, block.id, choice.id)
@@ -45,13 +45,14 @@ function normalizePictureChoice (form, blockID) {
   })
 
   return {
+    id: block.id,
     type: 'picture_choice',
     products
   }
 }
 
 function getPriceForChoice (form, blockID, choiceID) {
-  let block = form.fields.find(block => block.id === blockID)
+  const block = getBlockById(form, blockID)
 
   if (!block.properties.choices) {
     throw new Error('Block has no choices')

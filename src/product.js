@@ -9,6 +9,8 @@ const Root = styled.div`
   height: 100vh;
   min-width: 80vw;
   width: 80vw;
+  opacity: ${props => (props.isActive ? 1 : 0.75)};
+  transition: all 300ms ease;
 `
 
 const Image = styled.img`
@@ -64,8 +66,8 @@ class Product extends Component {
   render () {
     const { img, price, name } = this.props
     return (
-      <Root>
-        <Picture><Image src={img} /></Picture>
+      <Root isActive={this.props.isActive}>
+        <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
         <Description>{name}</Description>
         <Price>{price}e</Price>
         <Button onClick={this.props.onClick}>

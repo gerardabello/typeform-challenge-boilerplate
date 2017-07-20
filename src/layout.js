@@ -174,14 +174,20 @@ class Layout extends Component {
                   delta={horitzontalDelta}
                   max={field.products.length - 1}
                 >
-                  {field.products.map((product, i) => (
-                    <Product
-                      key={i}
-                      name={product.name}
-                      img={product.image}
-                      price={product.price}
-                    />
-                  ))}
+                  {field.products.map((product, j) => {
+                    return (
+                      <Product
+                        key={j}
+                        isActive={
+                          this.state.itemIndex[i] === j &&
+                            this.state.fieldIndex === i
+                        }
+                        name={product.name}
+                        img={product.image}
+                        price={product.price}
+                      />
+                    )
+                  })}
                 </Gallery>
               )
             } else if (field.type === 'statement') {
