@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import tinycolor from 'tinycolor2'
 
 const Root = styled.div`
   display: flex;
@@ -13,9 +14,20 @@ const Root = styled.div`
   transition: all 300ms ease;
 `
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.10);
+  box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  padding-bottom: 30px;
+  background: ${p => tinycolor(p.theme.colors.background).lighten().toString()};
+`
+
 const Image = styled.img`
-  border-radius: 5px;
-  box-shadow: 0px 30px 40px -20px rgba(0, 0, 0, 0.28);
   width: 70vw;
   height: 70vw;
   object-fit: cover;
@@ -33,7 +45,7 @@ const Picture = styled.div`
 `
 
 const Description = styled.div`
-  padding-top: 20px;
+  padding-top: 30px;
   width: 100%;
   text-align: center;
   font-size: 22px;
@@ -51,6 +63,7 @@ const Price = styled.div`
 `
 
 const Button = styled.button`
+  min-width: 150px;
   text-align: center;
   background: blue;
   border-radius: 3px;
@@ -67,12 +80,14 @@ class Product extends Component {
     const { img, price, name } = this.props
     return (
       <Root isActive={this.props.isActive}>
-        <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
-        <Description>{name}</Description>
-        <Price>{price}e</Price>
-        <Button onClick={this.props.onClick}>
-          Add to cart
-        </Button>
+        <Wrapper>
+          <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
+          <Description>{name}</Description>
+          <Price>{price}e</Price>
+          <Button onClick={this.props.onClick}>
+            Add to cart
+          </Button>
+        </Wrapper>
       </Root>
     )
   }
