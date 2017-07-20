@@ -15,23 +15,31 @@ const Button = styled.button`
 `
 
 const Half = styled.div`
-display: flex;
-
-justify-content: space-around;`
+  display: flex;
+  justify-content: space-around;
+`
 const Wrap = styled.div`
-width: 100%;
-margin-bottom: 25px;`
+  width: 100%;
+  margin-bottom: 25px;
+`
+
 const Root = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
 `
 
 const Imput = styled(Input)``
 
-const Title = styled.h3``
+const Title = styled.h3`
+  color: ${p => p.theme.colors.question};
+`
+
+const Steps = styled.span`
+color: ${p => p.theme.colors.question};
+`
 
 const TitleWrapper = styled.div`
 display: flex;
@@ -46,7 +54,7 @@ class Shipment extends Component {
       <Root>
         <TitleWrapper>
           <Title>Shipment address</Title>
-          <span>steps 1th of 3 </span>
+          <Steps>steps <strong>1th</strong> of 3</Steps>
         </TitleWrapper>
         <Wrap>
           <Imput label='Name' floatingLabel />
@@ -56,7 +64,7 @@ class Shipment extends Component {
             <Imput label='Zip Code' floatingLabel />
           </Half>
         </Wrap>
-        <Button>Next</Button>
+        <Button onClick={this.props.onNext}>Next</Button>
       </Root>
     )
   }

@@ -8,7 +8,6 @@ const Cart = styled.div`
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  height: 100%;
 `
 const Title = styled.h2`
   font-size: 20px;

@@ -33,33 +33,8 @@ class App extends Component {
     super(props)
     this.state = {
       fetching: true,
-      cart: [
-        {
-          id: 'jNXGK9IPyGSg',
-          name: 'Awesome bear',
-          image: 'https://images.typeform.com/images/cA58Pah3jG55',
-          price: 10
-        },
-        {
-          id: 'jNXGK9IPyGSg',
-          name: 'Awesome bear',
-          image: 'https://images.typeform.com/images/cA58Pah3jG55',
-          price: 10
-        },
-        {
-          id: 'CyT6uQhQufU8',
-          name: 'A k',
-          image: 'https://images.typeform.com/images/Wk6cNs8GA3cf',
-          price: 12
-        },
-        {
-          id: 'FUCrq3jW4qTe',
-          name: 'Meme nerd',
-          image: 'https://images.typeform.com/images/YjKjeCj6qTEh',
-          price: 8
-        }
-      ],
-      checkoutOpen: true
+      cart: [],
+      checkoutOpen: false
     }
 
     this.addProduct = this.addProduct.bind(this)

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 10;
+  position: fixed;
 `
 
 const Title = styled.div`

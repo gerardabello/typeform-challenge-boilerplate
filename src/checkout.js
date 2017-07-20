@@ -19,13 +19,14 @@ const Section = styled.div`
   height: 100vh;
   width: 100vw;
   flex: 0 0 100vw;
+  padding-top: 80px;
 `
 
 class Checkout extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { pageIndex: 1 }
+    this.state = { pageIndex: 0 }
 
     this.onNext = this.onNext.bind(this)
   }
@@ -43,12 +44,12 @@ class Checkout extends React.Component {
             <ShoppingCart onNext={this.onNext} cart={cart} />
           </Section>
           <Section>
+            <Shipment onNext={this.onNext} />
+          </Section>
+          <Section>
             <FlatCreditCard
               onChange={cardDetails => console.log(cardDetails)}
             />
-          </Section>
-          <Section>
-            <Shipment />
           </Section>
         </Wrapper>
       </Modal>
