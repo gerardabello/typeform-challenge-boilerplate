@@ -36,11 +36,12 @@ class App extends Component {
       cart: [],
       checkoutOpen: false
     }
+
+    this.addProduct = this.addProduct.bind(this)
   }
 
-  addProduct = product => {
+  addProduct (product) {
     return () => {
-      console.log('added product', this.state.cart)
       this.setState({
         cart: R.append(product, this.state.cart)
       })
