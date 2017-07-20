@@ -4,10 +4,8 @@ import R from 'ramda'
 
 const Cart = styled.div`
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
+  height: 80vh;
+  overflow-y: scroll;
 `
 const Title = styled.h2`
   font-size: 20px;
@@ -60,19 +58,19 @@ const Remove = styled.div`
 
 const ShoppingCart = ({ cart, onNext, onRemove }) => {
   const uniqCart = R.groupWith(R.equals, cart)
-  const total = cart.reduce((t, {price}) => t + price, 0)
+  const total = cart.reduce((t, { price }) => t + price, 0)
   return (
     <Cart>
       <Title>Shopping Cart</Title>
       {uniqCart.reduce((acc, order, i) => {
-        const items = order.map(({image, name, order, price}, j) =>
+        const items = order.map(({ image, name, order, price }, j) => (
           <Item key={`${i}${j}`}>
             <Image src={image} alt='' />
             <Name>{name}</Name>
             <Remove onClick={() => onRemove(i)}>remove</Remove>
             <Price>{price}€</Price>
           </Item>
-        )
+        ))
         return acc.concat(items)
       }, [])}
       <Item>
