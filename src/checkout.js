@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import R from 'ramda'
 
@@ -8,9 +8,7 @@ import ShoppingCart from './shopping-cart'
 import Shipment from './shipment'
 
 const Wrapper = styled.div`
-  transform: translateX(
-      ${props => -100 * props.index}vw
-  );
+  transform: translateX(${props => -100 * props.index}vw);
   display: flex;
   transition: transform 0.6s ease;
 `
@@ -22,11 +20,11 @@ const Section = styled.div`
   padding-top: 80px;
 `
 
-class Checkout extends React.Component {
+class Checkout extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { pageIndex: 1 }
+    this.state = { pageIndex: 0 }
 
     this.onNext = this.onNext.bind(this)
   }

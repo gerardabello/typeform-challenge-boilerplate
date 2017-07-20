@@ -34,57 +34,8 @@ class App extends Component {
     super(props)
     this.state = {
       fetching: true,
-      cart: [
-        {
-          id: 'hLTMyTXhDUxB',
-          name: 'Salad',
-          image: 'https://images.typeform.com/images/TzXeiNwgNjFq',
-          price: 4.5
-        },
-        {
-          id: 'hLTMyTXhDUxB',
-          name: 'Salad',
-          image: 'https://images.typeform.com/images/TzXeiNwgNjFq',
-          price: 4.5
-        },
-        {
-          id: 'BbCfdrPNp62n',
-          name: 'Mozzarella salad',
-          image: 'https://images.typeform.com/images/asW2t9vRcBPZ',
-          price: 4.5
-        },
-        {
-          id: 'BbCfdrPNp62n',
-          name: 'Mozzarella salad',
-          image: 'https://images.typeform.com/images/asW2t9vRcBPZ',
-          price: 4.5
-        },
-        {
-          id: 'FoTKVpH5k06l',
-          name: 'Vegetables soup',
-          image: 'https://images.typeform.com/images/sAXgN4NC4Zbd',
-          price: 4.5
-        },
-        {
-          id: 'FoTKVpH5k06l',
-          name: 'Vegetables soup',
-          image: 'https://images.typeform.com/images/sAXgN4NC4Zbd',
-          price: 4.5
-        },
-        {
-          id: 'f2i93bvQrHf7',
-          name: 'Ham pizza',
-          image: 'https://images.typeform.com/images/95Eyaf9hQBFF',
-          price: 4
-        },
-        {
-          id: 'f2i93bvQrHf7',
-          name: 'Ham pizza',
-          image: 'https://images.typeform.com/images/95Eyaf9hQBFF',
-          price: 4
-        }
-      ],
-      checkoutOpen: true
+      cart: [],
+      checkoutOpen: false
     }
 
     this.addProduct = this.addProduct.bind(this)
