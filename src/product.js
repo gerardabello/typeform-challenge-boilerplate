@@ -7,7 +7,6 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   min-width: 80vw;
   width: 80vw;
   opacity: ${props => (props.isActive ? 1 : 0.75)};
@@ -32,7 +31,7 @@ const Image = styled.img`
   object-fit: cover;
   object-position: center;
   max-width: 450px;
-  max-height: 450px;
+  max-height: 45vh;
   user-select: none;
   user-drag: none;
 `

@@ -3,10 +3,18 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Root = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+`
+
+const Slider = styled.div`
   display: flex;
 
   width: calc(100vw * ${props => props.children.length});
-  height: 100vh;
   transform: translateX(
     calc(
       ${props => -80 * props.selectedIndex}vw - ${props => props.delta}px + 10vw
@@ -16,19 +24,26 @@ const Root = styled.div`
 `
 
 const Title = styled.h1`
-  padding-top: 50px;
   color: ${p => p.theme.colors.question};
-  position: absolute;
+  margin-top: 62px;
+  font-size: 22px;
+  margin-bottom: 10px;
+  margin-left: 18vw;
 `
 
 class Gallery extends Component {
   render () {
     return (
-      <Root selectedIndex={this.props.selectedIndex} delta={this.props.delta}>
+      <Root>
         <Title>
           {this.props.title}
         </Title>
-        {this.props.children}
+        <Slider
+          selectedIndex={this.props.selectedIndex}
+          delta={this.props.delta}
+        >
+          {this.props.children}
+        </Slider>
       </Root>
     )
   }

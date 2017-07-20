@@ -51,6 +51,7 @@ function normalizePictureChoice (form, blockID) {
 
   return {
     id: block.id,
+    title: block.title,
     type: 'picture_choice',
     products
   }
