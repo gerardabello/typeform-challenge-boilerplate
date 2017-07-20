@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 import Layout from './layout'
 import R from 'ramda'
 
@@ -64,6 +64,10 @@ class App extends Component {
       const welcomeScreen = form.welcome_screens
         ? form.welcome_screens[0]
         : undefined
+
+      injectGlobal`
+        @import url('https://fonts.googleapis.com/css?family=${form.theme.font}');
+      `
 
       this.setState({
         form: getNormalizedForm(form),
