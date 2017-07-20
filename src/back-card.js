@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
+import tinycolor from 'tinycolor2'
 
 export const Back = styled.div`
   ${'' /* width: 400px;
   height: 250px;
   border-radius: 15px; */}
-  border: 1px solid ${(p) => p.borderColor};
-  background: ${(p) => p.background};
+  border-width: 1px;
+  border-style: solid;
+  background: ${p => tinycolor(p.theme.colors.background).darken().toString()};
+  border-color: ${p => tinycolor(p.theme.colors.background).darken().toString()};
   width: 80vmin;
   height: ${0.625 * 80}vmin;
   border-radius: ${0.035 * 80}vmin;
   backface-visibility: hidden;
   position: absolute;
-  color: #fff;
+  color: ${(p) => tinycolor(p.theme.colors.answer).toString()};
   font-family: Inconsolata, Monaco, monospace;
   top: 0;
   left: 0;

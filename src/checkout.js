@@ -55,7 +55,7 @@ class Checkout extends Component {
             <Shipment onNext={this.onNext} />
           </Section>
           <Section>
-            <Payment onChange={console.log} />
+            <Payment onNext={this.onNext} />
           </Section>
         </Wrapper>
       </Modal>

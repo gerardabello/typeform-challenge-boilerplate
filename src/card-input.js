@@ -23,26 +23,35 @@ const isValidNumber = (n) =>
   isFinite(n) &&
   n.toString().indexOf('.') < 0
 
-const CardInput = ({value, onChange, placeholderColor = 'white', isNumeric, ...props}) => {
-  return (
-    <Input
-      {...props}
-      // type={isNumeric ? 'number' : 'text'}
-      type='text'
-      value={value}
-      placeholderColor={placeholderColor}
-      onChange={(e) => {
-        const value = e.target.value
-        if (
-          isNumeric && isValidNumber(value) ||
-          !isNumeric ||
-          value === ''
-        ) {
-          onChange(value)
-        }
-      }}
-    />
-  )
+class CardInput extends React.Component {
+  render () {
+    const {
+      value,
+      onChange,
+      placeholderColor = 'white',
+      isNumeric,
+      ...props
+    } = this.props
+    return (
+      <Input
+        {...props}
+        // type={isNumeric ? 'number' : 'text'}
+        type='text'
+        value={value}
+        placeholderColor={placeholderColor}
+        onChange={(e) => {
+          const value = e.target.value
+          if (
+            isNumeric && isValidNumber(value) ||
+            !isNumeric ||
+            value === ''
+          ) {
+            onChange(value)
+          }
+        }}
+      />
+    )
+  }
 }
 
 export default CardInput

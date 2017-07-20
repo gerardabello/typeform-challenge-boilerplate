@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import tinycolor from 'tinycolor2'
 
 export const CardBox = styled.div`
 perspective: 1000;
@@ -19,7 +18,7 @@ position: relative;
 transform: rotateY(${props => props.turn ? '180deg' : ''});
 `
 export const DateDivider = styled.span`
-  color: ${(p) => tinycolor(p.theme.colors.question).darken().toString()}
+  color: ${(p) => p.theme.colors.question}
 `
 
 export const Logo = styled.div`
