@@ -72,6 +72,7 @@ const Button = styled.button`
   padding: 12px 30px;
   color: ${p => p.theme.colors.buttonText};
   background: ${p => p.theme.colors.button};
+  font-family: '${p => p.theme.font}', sans-serif;
 `
 
 class Product extends Component {

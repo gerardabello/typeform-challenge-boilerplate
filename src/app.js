@@ -18,7 +18,7 @@ const Root = styled.section`
   overflow: hidden;
   color: ${p => p.theme.colors.answer};
   background: ${p => p.background};
-  font-family: '${p => p.font}', sans-serif
+  font-family: '${p => p.theme.font}', sans-serif;
 `
 
 const LoaderWrapper = styled.div`

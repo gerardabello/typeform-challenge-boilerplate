@@ -49,8 +49,8 @@ const Items = styled.div`
   line-height: 16px;
   font-size: 10px;
   text-align: center;
-  background: ${p => p.theme.colors.question};
-  color: white;
+  background: ${p => p.theme.colors.button};
+  color: ${p => p.theme.colors.buttonText};
   margin-left: 1em;
   position: absolute;
   right: 0;
