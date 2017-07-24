@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import tinycolor from 'tinycolor2'
 
+const scaleMax = 1.03
+const scaleMin = 0.9
+
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,19 +14,18 @@ const Root = styled.div`
   width: 70vw;
   opacity: ${props => (props.isActive ? 1 : 0.75)};
   transition: all 300ms ease;
-  transform: scale(${props => (props.isActive ? 1.03 : 0.9)});
+  transform: scale(${props => (props.isActive ? scaleMax * props.delta : scaleMin)});
   transition: all ease 300ms;
 `
+
+// 0,001 * 200 + 0,9
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px ${props =>
-    props.isActive
-      ? '10px'
-      : '30px'} 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px ${props => (props.isActive ? '10px' : '30px')} 40px -20px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   overflow: hidden;
   padding-bottom: 30px;
@@ -83,7 +85,7 @@ class Product extends Component {
   render () {
     const { img, price, name } = this.props
     return (
-      <Root isActive={this.props.isActive}>
+      <Root isActive={this.props.isActive} delta={this.props.delta}>
         <Wrapper isActive={this.props.isActive}>
           <Picture><Image isActive={this.props.isActive} src={img} /></Picture>
           <Description>{name}</Description>

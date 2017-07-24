@@ -44,7 +44,7 @@ const GalleryWrapper = styled.div`
 // `
 
 const Arrow = styled.div`
-  ${(p) => p.hide ? 'display: none;' : ''}
+  ${p => (p.hide ? 'display: none;' : '')}
   position: fixed;
   bottom: 10px;
   left: calc(50% - 20px);
@@ -176,7 +176,7 @@ class Layout extends Component {
     })
   }
   shouldHideArrow () {
-    const {horitzontalDelta, verticalDelta, fieldIndex} = this.state
+    const { horitzontalDelta, verticalDelta, fieldIndex } = this.state
     return (
       this.props.fields.length - 1 === fieldIndex ||
       horitzontalDelta !== 0 ||
@@ -222,8 +222,9 @@ class Layout extends Component {
                         key={j}
                         isActive={
                           this.state.itemIndex[i] === j &&
-                          this.state.fieldIndex === i
+                            this.state.fieldIndex === i
                         }
+                        delta={horitzontalDelta}
                         name={product.name}
                         img={product.image}
                         price={product.price}
